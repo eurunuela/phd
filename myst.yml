@@ -1,0 +1,19 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  title: "Unraveling Hidden Patterns of Brain Activity: A Journey Through Hemodynamic Deconvolution in Functional MRI"
+  # description:
+  keywords: []
+  authors: ["Eneko Uruñuela"]
+  github: https://github.com/eurunuela/phd
+  bibliography: ["bibliography.bib"]
+site:
+  template: book-theme
+  title: "Unraveling Hidden Patterns of Brain Activity: A Journey Through Hemodynamic Deconvolution in Functional MRI"
+  # options:
+  #   logo: site_logo.png
+  nav: []
+  actions:
+    - title: Learn More
+      url: https://mystmd.org/guide
+  domains: []
