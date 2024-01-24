@@ -4,7 +4,10 @@ project:
   title: "Unraveling Hidden Patterns of Brain Activity: A Journey Through Hemodynamic Deconvolution in Functional MRI"
   # description:
   keywords: []
-  authors: ["Eneko Uruñuela"]
+  authors:
+    - name: Eneko Uruñuela
+      twitter: eurunuela
+      orcid: 0000-0001-6849-9088
   github: https://github.com/eurunuela/phd
   bibliography: ["bibliography.bib"]
 site:
@@ -12,9 +15,8 @@ site:
   title: "Unraveling Hidden Patterns of Brain Activity: A Journey Through Hemodynamic Deconvolution in Functional MRI"
   logo: ./figures/spin_logo.png
   logo_dark: ./figures/spin_logo_dark.png
-  #   logo: site_logo.png
   nav: []
   actions:
-    - title: Learn More
-      url: https://mystmd.org/guide
+    - title: Packages
+      url: https://github.com/orgs/Paradigm-Free-Mapping/repositories
   domains: []

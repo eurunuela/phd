@@ -108,46 +108,12 @@ The optimization problem in \cref{eq:low_rank_inverse_problem} is solved via
 monotone FISTA with variable acceleration (MFISTA-VA)
 \citep{Zibetti2018MonotoneFISTAvariable} as shown in Algorithm 1.
 
-\begin{algorithm}[tb]
-    \label{alg:1}
-    \caption{SPLORA-PFM algorithm using MFISTA-VA}
-    \begin{algorithmic}[1]
-        \STATE \textbf{input}: $\mathbf{Y}, \mathbf{H}$ \STATE
-        \textbf{initialize:} $\mathbf{L_0, S_0, Y_{S,0}, Y_{L,0}, Y_{A,0}} = 0$,
-        $c=\|\mathbf{H}\|_F^2$ \STATE \textbf{while} not converged \textbf{do}
-        \STATE \hspace{\algorithmicindent} $\mathbf{Z_S} = \mathbf{Y_{S,k} +
-        (1/c) * (\mathbf{Y} - \mathbf{Y_{A,k}})}$ \STATE
-        \hspace{\algorithmicindent} $\mathbf{Z_L} = \mathbf{Y_{L,k} + (1/c) *
-        (\mathbf{Y} - \mathbf{Y_{A,k}})}$ \STATE \hspace{\algorithmicindent}
-        \textbf{\# $\mathbf{L}$: singular-value soft thresholding (SVT)} \STATE
-        \hspace{\algorithmicindent} $\mathbf{L_k} =
-        \operatorname{SVT_{\lambda_L}}(\mathbf{Z_S})$ \STATE
-        \hspace{\algorithmicindent} \textbf{\# $\mathbf{S}$: proximity operator
-        for the $\ell_{2,1}$+$\ell_1$ norm} \STATE \hspace{\algorithmicindent}
-        $\mathbf{S_k} = \operatorname{prox_{\mathbf{D}_S}}(\mathbf{Z_L})$ \STATE
-        \hspace{\algorithmicindent} \textbf{\# Update $\mathbf{A}$} \STATE
-        \hspace{\algorithmicindent} $\mathbf{Z_A} = (\mathbf{L_k} -
-        \mathbf{Y_{L,k}}) + \mathbf{H}(\mathbf{S_k - Y_{S,k}})$ \STATE
-        \hspace{\algorithmicindent} $\mathbf{A_k} = \mathbf{Y_{A,k}} +
-        \mathbf{Z_A}$ \STATE \hspace{\algorithmicindent} \textbf{\# Calculate
-        MFISTA step size: $t_k = \frac{1 + \sqrt{1 + 4 * t_{k-1}^2}}{2}$} \STATE
-        \hspace{\algorithmicindent} \textbf{\# Calculate $\eta_k$ as in
-        \citep{Zibetti2018MonotoneFISTAvariable}} \STATE
-        \hspace{\algorithmicindent} $\mathbf{Y_{S,k+1}} = \mathbf{S_k} +
-        \frac{t_k - 1}{t_{k+1}} (\mathbf{S_k} - \mathbf{S_{k-1}}) +
-        \frac{t_k}{t_{k+1}} (\mathbf{Z_S} - \mathbf{S_k}) +
-        \frac{t_k}{t_{k+1}}(\eta_k - 1)(\mathbf{Z_S} - \mathbf{Y_{S,k}})$ \STATE
-        \hspace{\algorithmicindent} $\mathbf{Y_{L,k+1}} = \mathbf{L_k} +
-        \frac{t_k - 1}{t_{k+1}} (\mathbf{L_k} - \mathbf{L_{k-1}}) +
-        \frac{t_k}{t_{k+1}} (\mathbf{Z_L} - \mathbf{L_k}) +
-        \frac{t_k}{t_{k+1}}(\eta_k - 1)(\mathbf{Z_L} - \mathbf{Y_{L,k}})$ \STATE
-        \hspace{\algorithmicindent} $\mathbf{Y_{A,k+1}} = \mathbf{A_k} +
-        \frac{t_k - 1}{t_{k+1}} (\mathbf{A_k} - \mathbf{A_{k-1}}) +
-        \frac{t_k}{t_{k+1}} (\mathbf{Z_A} - \mathbf{A_k}) +
-        \frac{t_k}{t_{k+1}}(\eta_k - 1)(\mathbf{Z_A} - \mathbf{Y_{A,k}})$ \STATE
-        \textbf{end while} \STATE \textbf{output:} $\mathbf{L_k}, \mathbf{S_k}$
-    \end{algorithmic}
-\end{algorithm}
+\begin{figure*}[th!]
+    \centering
+    \includegraphics[width=\textwidth]{figures/low_rank/algorithm.png}
+    \caption{Pseudocode for Monotone FISTA with Variable Acceleration.}
+    \label{fig:algorithm}
+\end{figure*}
 
 \setlength{\textfloatsep}{10pt}% Remove \textfloatsep
 
