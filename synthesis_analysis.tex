@@ -15,7 +15,7 @@ sparsity-pursuing regularization are attracting increasing interest to
 investigate brain dynamics and connectivity with fMRI. This chapter describes
 the principles of hemodynamic deconvolution in fMRI, and revisits the main
 concepts underlying two main sparsity-promoting deconvolution algorithms,
-\acrlong*{pfm} and Total Activation, in an accessible manner. Despite their
+Paradigm Free Mapping and Total Activation, in an accessible manner. Despite their
 apparent differences in the formulation, these methods are shown theoretically
 equivalent as they represent the synthesis and analysis sides of the same
 problem, respectively. This chapter demonstrates this equivalence in practice
@@ -23,7 +23,7 @@ with their best-available implementations using both simulations, with different
 signal-to-noise ratios, and experimental fMRI data acquired during a motor task
 and resting-state. The chapter also evaluates the parameter settings that lead
 to equivalent results, and showcases the operation of these algorithms in
-comparison with \acrlong*{cap} analysis. This note is useful for practitioners
+comparison with Coactivation Pattern analysis. This note is useful for practitioners
 interested in gaining a better understanding of state-of-the-art hemodynamic
 deconvolution, and aims to answer questions regarding the differences between
 the two methods.
@@ -56,7 +56,7 @@ response shape assuming a known activity-inducing signal or neuronal activity
 \citep{Goutte2000Modelinghaemodynamicresponse,Marrelec2002Bayesianestimationhemodynamic,
 Ciuciu2003Unsupervisedrobustnonparametric,Casanova2008impacttemporalregularization}.
 }. Given the inherently ill-posed nature of hemodynamic deconvolution, due to
-the sluggish characteristics of the \acrshort*{hrf}, the key is to introduce
+the sluggish characteristics of the HRF, the key is to introduce
 additional constraints in the estimation problem that are typically expressed as
 regularization terms. For instance, the so-called Wiener deconvolution is
 expressing a \enquote{minimal energy} constraint on the deconvolved signal, and
@@ -132,7 +132,7 @@ small spatial scales (e.g., voxelwise). Relevant for this work, two different
 formulations can be established for the regularized least-squares deconvolution
 problem, either based on a synthesis- or analysis-based model
 \citep{Elad2007Analysisversussynthesis,Ortelli2019Synthesisanalysistotal}. On
-the one hand, \acrlong*{pfm} is based on a synthesis formulation that is solved
+the one hand, Paradigm Free Mapping is based on a synthesis formulation that is solved
 by means of regularized least-squares estimators such as ridge-regression
 \citep{Gaudes2010Detectioncharacterizationsingle} or LASSO
 \citep{Gaudes2013Paradigmfreemapping}. The rationale of the synthesis-based
@@ -151,12 +151,12 @@ in time.
 The users of these algorithms have often questioned about the similarities and
 differences between the two methods and which one is better. To clarify this
 point, this chapter initially presents the theory behind these two deconvolution
-approaches: \acrfull*{pfm} \citep{Gaudes2013Paradigmfreemapping} --- available
+approaches: Paradigm Free Mapping (PFM) \citep{Gaudes2013Paradigmfreemapping} --- available
 in AFNI as
 \textit{3dPFM}\footnote{\url{https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dPFM.html}}
 and
 \textit{3dMEPFM}\footnote{\url{https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dMEPFM.html}}
-for single-echo and multi-echo data, respectively --- and \acrfull*{ta}
+for single-echo and multi-echo data, respectively --- and Total Activation (TA)
 \citep{Karahanoglu2013TotalactivationfMRI} --- available as part of the
 \textit{iCAPs toolbox}\footnote{\url{https://c4science.ch/source/iCAPs/}}. The
 chapter describes the similarities and differences in their analytical
@@ -272,10 +272,10 @@ $\Omega(\mathbf{x})=\lambda_1\|\mathbf{x}\|_2^2 + \lambda_2\|\mathbf{x}\|_1$)
 \citep{Zou2005Regularizationvariableselection}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \acrlong*{pfm}
+% Paradigm Free Mapping
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{\acrlong*{pfm}} In \acrfull*{pfm}, the formulation of
+\subsection{Paradigm Free Mapping} In Paradigm Free Mapping (PFM), the formulation of
 \cref{eq:regularized_least_squares} was considered equivalently as fitting the
 measurements using the atoms of the HRF dictionary (i.e., columns of
 $\mathbf{H}$) with corresponding weights (entries of $\mathbf{s}$). This model
@@ -399,7 +399,7 @@ models are used.
     estimate the innovation signals, i.e., the derivative of the
     activity-inducing signal. The blue box depicts the iterative \textit{modus
     operandi} of the two algorithms used in this paper to solve the paradigm
-    free mapping (PFM) and \acrfull*{ta} deconvolution problems. The plot on the
+    free mapping (PFM) and Total Activation (TA) deconvolution problems. The plot on the
     left shows the regularization path obtained with the least angle regression
     (LARS) algorithm, where the x-axis illustrates the different iterations of
     the algorithm, the y-axis represents points in time, and the color describes
@@ -509,7 +509,7 @@ To compare the performance of the two approaches as well as illustrate their
 operation, two representative experimental datasets were employed.
 
 \textbf{Motor task dataset:} One healthy subject was scanned in a 3T
-\acrshort*{mr} scanner (Siemens) under a Basque Center on Cognition, Brain and
+MR scanner (Siemens) under a Basque Center on Cognition, Brain and
 Language Review Board-approved protocol. T2*-weighted multi-echo fMRI data was
 acquired with a simultaneous-multislice multi-echo gradient echo-planar imaging
 sequence, kindly provided by the Center of Magnetic Resonance Research
@@ -749,7 +749,7 @@ selection of $\lambda$ due to the quantization of the values returned by LARS.
 
 \subsection{Performance on Experimental Data}
 
-\cref{fig:rss} depicts the \acrshort*{rssd} maps revealing differences between
+\cref{fig:rss} depicts the RSSD maps revealing differences between
 PFM and TA estimates for the spike (\cref{fig:rss}A and C) and block
 (\cref{fig:rss}B and D) models when applied to the three experimental fMRI
 datasets. The RSSD values are virtually negligible (i.e., depicted in yellow) in
@@ -770,7 +770,7 @@ matter. These differences that arise from the different approaches to find the
 optimal regularization parameter based on the MAD estimate of the noise can be
 clearly seen in the root sum of squares (RSS) of the estimates
 (\cref{fig:rss_comparison}). These differences are also observable in the
-\acrshort*{ats} calculated from estimates obtained with the MAD selection as
+ATS calculated from estimates obtained with the MAD selection as
 shown in \cref{fig:task_mad}. However, the identical regularization paths shown
 in \cref{fig:motor_regpaths} demonstrate that both methods perform equivalently
 on experimental data (see estimates of innovation signal obtained with an
@@ -828,7 +828,7 @@ from thresholding and averaging the activity-inducing and innovation signals,
 respectively, estimated from the resting-state multiband data using PFM with a
 selection of $\lambda$ based on the BIC. The average activity-inducing maps
 obtained via deconvolution show spatial patterns of the default mode network
-(DMN), dorsal attention network (\acrshort*{dan}), and visual network (VIS) that
+(DMN), dorsal attention network (DAN), and visual network (VIS) that
 highly resemble the maps obtained with conventional seed correlation analysis
 using Pearson's correlation, and the average maps of extreme points of the
 signal (i.e., with no deconvolution). With deconvolution, the average
@@ -894,7 +894,7 @@ methods in under-determined cases (\(N \leq V\)) demonstrated in
 \citep{Ortelli2019Synthesisanalysistotal}. Still, this chapter has shown that a
 slight difference in the selection of the regularization parameter can lead to
 small differences in the estimated signals when employing the block model with
-the \acrshort*{bic} selection of $\lambda$. However, since their regularization
+the BIC selection of $\lambda$. However, since their regularization
 paths are equivalent, the algorithms can easily be forced to converge to the
 same selection of $\lambda$, thus resulting in identical estimated signals.
 

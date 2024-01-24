@@ -11,7 +11,7 @@ This chapter proposes the implementation of a subsampling approach based on
 stability selection that avoids the choice of any regularization parameter for
 hemodynamic deconvolution with sparity-promoting regularized least squares
 estimators. The proposed method is implemented to operate with the Sparse
-\acrlong*{pfm} (SPFM) algorithm and its performance is evaluated on real fMRI
+Paradigm Free Mapping (SPFM) algorithm and its performance is evaluated on real fMRI
 data and compared with both the original SPFM algorithm, which used model
 selection criteria to select the parameters, and a conventional analysis with a
 general linear model (GLM) that is aware of the temporal model of the
@@ -31,7 +31,7 @@ events via a linear time-invariant model (i.e., a forward model of the BOLD
 response) that is then inverted by means of regularized least-squares estimators
 to deconvolve the neuronal-related activity at each voxel
 \citep{Gitelman2003Modelingregionalpsychophysiologic,Khalidov2011ActiveletsWaveletssparse,Karahanoglu2013TotalactivationfMRI,HernandezGarcia2011Neuronaleventdetection,Gaudes2010Detectioncharacterizationsingle,Gaudes2013Paradigmfreemapping}.
-In particular, the sparse \acrlong*{pfm} (SPFM) method
+In particular, the sparse Paradigm Free Mapping (SPFM) method
 \citep{Gaudes2013Paradigmfreemapping}, which is the basis of this work, employs
 sparsity-promoting regularization terms based on the L1-norm of the estimates
 (e.g., using the LASSO or the Dantzig Selector). Importantly, inverse problem
@@ -79,7 +79,7 @@ algorithm are introduced; in \cref{sec:stability_methods}, the results of
 applying this new algorithm on experimental fMRI data are presented and compare
 them to the previous SPFM algorithm.
 
-\section{Signal Model and Deconvolution with Stability-Based \acrlong*{pfm}}
+\section{Signal Model and Deconvolution with Stability-Based Paradigm Free Mapping}
 \label{sec:stability_model}
 For the sake of completeness, this section revises the signal model for hemodynamic deconvolution, which was already described in \cref{cha:synthesis_analysis}. 
 In fMRI data analysis, the signal of a voxel $y(t)$ is commonly modelled as the
@@ -150,7 +150,7 @@ algorithm (FISTA) \citep{Beck2009FastIterativeShrinkage}. Instead, this
 chapter proposes to use the least angle regression (LARS) algorithm
 \citep{Efron2004Leastangleregression}, which computes the entire regularization
 path for an optimal decreasing set of $\lambda$ values and is faster than
-\acrshort*{fista} \citep{Beck2009FastIterativeShrinkage} for our purposes. Then,
+FISTA \citep{Beck2009FastIterativeShrinkage} for our purposes. Then,
 for each surrogate, the estimate $u_(\lambda_l,t)^i$ at the regularization
 parameter $\lambda_l$ and time point $t$ is binarized as $c_(\lambda_l,t)^i=0$
 if $u_(\lambda_l,t)^i=0$ or $c_(\lambda_l,t)^i=1$ otherwise. To overcome the
@@ -161,7 +161,7 @@ of the regularization parameters from all of the surrogate-specific
 regularization paths in decreasing order. The
 coefficients $c_(\lambda_l,t)^i$ remain 0 or 1 according to the preceding value
 of $\lambda_l^i$ corresponding to the surrogate-specific regularization path
-computed by \acrshort*{lars}. This step allows us to calculate the probabilities
+computed by LARS. This step allows us to calculate the probabilities
 that construct the stability paths as the ratio of surrogates where each
 coefficient $u_(\lambda,t)$ is different from 0 at each $\lambda$. 
 

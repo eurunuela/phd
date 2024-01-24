@@ -1,5 +1,5 @@
 % !TEX root = ../main.tex
-\title{Multi-Subject \acrlong*{pfm}}
+\title{Multi-Subject Paradigm Free Mapping}
 \label{cha:multi-subject}
 
 \begin{framed}\noindent This chapter is in preparation to be published and will
@@ -23,7 +23,7 @@ necessitate combining information across multiple time points, making it
 difficult to trace the recovered signal back to particular moments in the
 stimulus. To address these limitations, this chapter introduces a novel method
 for fMRI data analysis in naturalistic paradigms, called multi-subject
-\acrlong*{pfm} (msPFM). Unlike existing approaches, msPFM estimates shared and
+Paradigm Free Mapping (msPFM). Unlike existing approaches, msPFM estimates shared and
 individualized neuronal-related brain responses at the finest spatial and
 temporal resolution available in fMRI data. The msPFM algorithm implements a
 multivariate regularized least-squares algorithm for hemodynamic deconvolution
@@ -119,7 +119,7 @@ precise, individualized spatial patterns. More importantly, all these techniques
 summarize the within-region fMRI signal into states or connectivity patterns
 that are sustained over several TRs, and therefore, they do not capture temporal
 dynamics at the fastest temporal resolution available in the data, i.e., at the
-\acrshort*{tr} level. In summary, these methods rule out the precision mapping
+TR level. In summary, these methods rule out the precision mapping
 of idiosyncratic spatio-temporal patterns evoked by naturalistic stimuli. One
 possible approach to address this issue is to employ data-driven techniques that
 operate at the TR and voxel level. Hemodynamic deconvolution is a method that
@@ -131,7 +131,7 @@ experimental paradigm, and as a result, it proves to be particularly valuable
 when dealing with naturalistic stimuli.
 
 Here, we introduce a novel method for the analysis of naturalistic fMRI data
-called multi-subject \acrlong*{pfm} (msPFM) that overcomes the limitations
+called multi-subject Paradigm Free Mapping (msPFM) that overcomes the limitations
 mentioned above. msPFM solves a multivariate regularized least-squares problem
 for hemodynamic deconvolution of the fMRI signal across subjects to blindly
 estimate the shared and individualized neuronal-related activity without
@@ -146,7 +146,7 @@ features. The datasets, \textit{Iteration} and \textit{Sherlock}, differed in
 terms of the studied low- and mid-level features, subject counts (43 vs 16), and
 data type (multi-echo vs single-echo).
 
-\section{Multi-subject \acrlong*{pfm}}
+\section{Multi-subject Paradigm Free Mapping}
 
 \subsection{Signal Model}
 
@@ -220,7 +220,7 @@ common space, the multivariate multi-echo formulation introduced by
 \citep{Urunuela2022Wholebrainmultivariate} (see \cref{cha:multivariate}) is
 adapted to simultaneously estimate shared and individualized voxelwise
 activity-inducing signal in multiple subjects. This method, referred to as
-multi-subject \acrlong*{pfm} (msPFM), therefore proposes to concatenate the
+multi-subject Paradigm Free Mapping (msPFM), therefore proposes to concatenate the
 voxelwise fMRI signal of multiple subjects into $\mathbf{Y}_v \in \mathbb{R}^{K
 \cdot N S}$. Hence, for a given voxel $v$ or ROI the signal model of msPFM can
 be written as follows:
@@ -493,7 +493,7 @@ Nastase2019Measuringsharedresponses, Finn2020Idiosynchronysharedresponses}, also
 roughly follows a sensory-association gradient, such that subjects are more
 similar to one another (i.e., more synchronized) in primary visual and auditory
 regions, while activity becomes more idiosyncratic in higher-order regions. An
-\acrshort*{isc}-like metric was defined from msPFM estimates by quantifying the
+ISC-like metric was defined from msPFM estimates by quantifying the
 median correlation across subjects of the estimated activity-inducing signal in
 each parcel. Then, this was compared to a "classic" ISC approach, in which the
 median correlation across subjects of average raw BOLD signal was quantified in
@@ -501,7 +501,7 @@ each parcel.
 
 \subsubsection*{Correlation Between Population Synchrony and Movie Features}
 
-In order to confirm that the multi-subject \acrlong*{pfm} method can detect
+In order to confirm that the multi-subject Paradigm Free Mapping method can detect
 brain activity patterns related to sensory stimuli, the correlation between the
 population synchrony and the following low-level features was calculated:
 changes in luminance (i.e., the derivative of the luminance), and changes in
@@ -626,7 +626,7 @@ estimated activity-inducing signal. In fact, the thinner time series in both
 datasets clearly demonstrate the presence of individual differences in the msPFM
 estimates of each subject, ehich are consistly observed in the two examples of
 the left middle temporal gyrus (Brodman area 21) and the V1 visual area.
-Notably, the \acrshort*{popsync} time series (depicted in red) displays a
+Notably, the PopSync+ time series (depicted in red) displays a
 pronounced alignment with speech events occurring in the movies (depicted in
 black). This alignment is particularly prominent in the context of
 \textit{Sherlock}, wherein the episode encompasses a notably higher frequency of
@@ -845,7 +845,7 @@ with the intricate and distinctive content inherent to each stimulus.
 \section{Discussion}
 \label{sec:multi_subject_discussion}
 
-The potential of multi-subject \acrlong*{pfm} (msPFM) to detect and elucidate
+The potential of multi-subject Paradigm Free Mapping (msPFM) to detect and elucidate
 moment-to-moment spatio-temporal neural activity patterns evoked by naturalistic
 stimuli has been showcased using simulations and two experimental datasets.
 While previous investigations have employed alternative approaches, such as
@@ -873,7 +873,7 @@ abstracted into broader conceptual and cognitive representations in transmodal
 areas
 \citep{Bernhardt2022Gradientsbrainorganization,Margulies2016Situatingdefaultmode,Samara2023Corticalgradientsnaturalistic}.
 However, msPFM offers several advantages over the HMM-based approach. First, the
-\acrshort*{hmm} method requires specifying a desired number of events ($k$) for
+HMM method requires specifying a desired number of events ($k$) for
 each region. While there are data-driven ways to estimate an appropriate value
 for $k$ at the group level, these require additional computational time and
 power, and are not straightforward to implement for individual subjects. In
@@ -938,7 +938,7 @@ adequately demonstrates the potential of msPFM-alike approaches in investigating
 the brain's spatio-temporal dynamics during naturalistic stimuli. For instance,
 msPFM offers a valuable approach to unraveling the precise neural mechanisms
 involved in event segmentation. It can be employed independently or in
-conjunction with other techniques such as HMM or \acrshort*{gsbs} to gain an
+conjunction with other techniques such as HMM or GSBS to gain an
 understanding of the timescale for memory encoding, as well as the continuous
 updating or encoding of memory fragments following the completion of an event
 \citep{Baldassano2017DiscoveringEventStructure,

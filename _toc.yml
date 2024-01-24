@@ -19,6 +19,7 @@ format: jb-book
 root: index
 chapters:
   - file: abstract
+  - file: acronyms
   - file: introduction
   - file: synthesis_analysis
   - file: stability

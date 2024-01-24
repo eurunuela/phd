@@ -1,4 +1,4 @@
-\title{Sparse and Low-Rank \acrlong*{pfm}}
+\title{Sparse and Low-Rank Paradigm Free Mapping}
 \label{cha:low-rank}
 
 \begin{framed}\noindent This chapter was published as
@@ -17,7 +17,7 @@ rank decomposition algorithm. The performance of the proposed method is
 evaluated on simulated and experimental fMRI data, and compared with
 state-of-the-art sparsity-based deconvolution approaches and with a conventional
 analysis that is aware of the temporal model of the neuronal-related activity.
-This chapter demonstrates that the novel \acrfull*{splorapfm} can estimate global
+This chapter demonstrates that the novel sparse and low-rank paradigm free mapping (SPLORA-PFM) can estimate global
 signal fluctuations related to motion in the task, while estimating the
 neuronal-related activity with high fidelity. The open-source Python package for
 SPLORA is available at
@@ -41,7 +41,7 @@ physiological events (e.g., deep breaths)
 and hardware malfunction can be reduced by means of denoising algorithms, such
 as ICA-AROMA \citep{Pruim2015ICAAROMArobust} or ME-ICA
 \citep{Kundu2012DifferentiatingBOLDnon}, or can be compensated with a multi-echo
-\acrlong*{pfm} formulation
+Paradigm Free Mapping formulation
 \citep{CaballeroGaudes2019deconvolutionalgorithmmulti}. However, global
 physiological events are more difficult to compensate during data preprocessing
 \citep{Power2018RiddingfMRIdata} and can be misinterpreted as neuronally related
@@ -49,16 +49,16 @@ since their temporal signature can closely resemble the hemodynamic response
 function (HRF) assumed in the deconvolution model to describe neurovascular
 coupling.
 
-This chapter proposes a new \acrlong*{pfm} algorithm for spatio-temporal
+This chapter proposes a new Paradigm Free Mapping algorithm for spatio-temporal
 deconvolution of fMRI data that is capable of simultaneously estimating global
 signal fluctuations and neuronal-related activity based on a sparse and low-rank
 decomposition approach. The proposed algorithm extends the formulation of the
-multivariate-sparse \acrlong*{pfm} (Mv-SPFM)
+multivariate-sparse Paradigm Free Mapping (Mv-SPFM)
 introduced in \cref{cha:multivariate} by using a regularized estimator
 consisting of the same structured sparsity promoting $\ell_{2,1}+\ell_1$ norm
 but adding a low-rank-promoting nuclear-norm \citep{Otazo2015Lowrankplus}.
 
-\section{Sparse and Low-Rank \acrlong*{pfm}}
+\section{Sparse and Low-Rank Paradigm Free Mapping}
 \label{sec:low_rank_lrs_pfm}
 Let us consider that the whole-brain fMRI data $\mathbf{Y} \in
 \mathbb{R}^{N \times V}$ where $N$ is the number of volumes and $V$ is the
@@ -69,7 +69,7 @@ number of voxels of the acquisition can be decomposed into three terms, i.e.\
 where the neuronal-related component $\mathbf{H}\mathbf{S}$ is the convolution
 of voxel-specific neuronal-related signals $\mathbf{S}$ with the Toeplitz matrix
 $\mathbf{H} \in \mathbb{R}^{N \times N}$ with shifted HRFs in its columns (i.e.\
-similar to the formulation used for multivariate \acrlong*{pfm}
+similar to the formulation used for multivariate Paradigm Free Mapping
 \cite{Urunuela2022Wholebrainmultivariate}), the global fluctuations can be
 captured as the sum of $P$ spatially widespread (i.e.\ global) low-rank
 components $\mathbf{L}=\sum_{p=1}^{P}\mathbf{v}_p\mathbf{a}_p^T$ where
@@ -100,7 +100,7 @@ domain and maintain the sparsity of the estimates. For each voxel,
 $\lambda_{S_i}$ is set equal to the median absolute deviation estimate  of the
 noise standard deviation from the fine-scale wavelet coefficients of the voxel
 time series (Daubechies, order 3). After the singular value decomposition
-(\acrshort*{svd}) of the data, $\lambda_L$ is set to select $P$ low-rank
+(SVD) of the data, $\lambda_L$ is set to select $P$ low-rank
 components corresponding to the largest eigenvalues showing a difference of at
 least 10\% with respect to the next eigenvalue. 
 
@@ -110,7 +110,7 @@ monotone FISTA with variable acceleration (MFISTA-VA)
 
 \begin{algorithm}[tb]
     \label{alg:1}
-    \caption{SPLORA-PFM algorithm using \acrshort*{mfistavs}}
+    \caption{SPLORA-PFM algorithm using MFISTA-VA}
     \begin{algorithmic}[1]
         \STATE \textbf{input}: $\mathbf{Y}, \mathbf{H}$ \STATE
         \textbf{initialize:} $\mathbf{L_0, S_0, Y_{S,0}, Y_{L,0}, Y_{A,0}} = 0$,
@@ -164,7 +164,7 @@ random voxelwise amplitude simulating widespread signal changes due to two deep
 breaths \citep{Power2018RiddingfMRIdata} and large amplitude spikes mimicking
 spin-history artefacts due to head jerks, respectively. 
 
-The performance of the proposed \acrshort*{splorapfm} algorithm was asssesed on
+The performance of the proposed SPLORA-PFM algorithm was asssesed on
 different signal to noise ratio (SNR) settings and with different ratios of
 voxels with BOLD signals to total number of voxels (denoted as BOLD/total voxels
 ratio). Four different algorithms based on \cref{eq:low_rank_inverse_problem}
@@ -177,7 +177,7 @@ were evaluated depending on the regularization parameters:
     \item SPLORA-PFM algorithm with only the L1-norm (LR+SPFM, $\rho=1$)
     \item SPLORA-PFM algorithm ($\rho = 0.8$)
 \end{enumerate}
-These were benchmarked against the original univariate \acrshort*{spfm}
+These were benchmarked against the original univariate SPFM
 algorithm with regularization parameter selected according to the Bayesian
 Information Criterion (SPFM-BIC) \citep{Gaudes2013Paradigmfreemapping}. Note
 that both the SPFM algorithm with $\rho=1$ and $\lambda_L=0$ and the original
@@ -229,8 +229,8 @@ selected as described in \cref{sec:low_rank_lrs_pfm}.
     \centering
     \includegraphics[width=\textwidth]{figures/low_rank/figure_1_v6.pdf}
     \caption{Simulation results. A) An example of the simulated signals for the
-    different \acrshort*{snr} conditions; B) ROC values for the estimation of
-    the neuronal-related signal with: SPFM using \acrshort*{bic} (SPFM BIC),
+    different SNR conditions; B) ROC values for the estimation of
+    the neuronal-related signal with: SPFM using BIC (SPFM BIC),
     SPFM with no low-rank estimation and no spatial regularization (SPFM,
     $\rho=1$), MV-SPFM with no low-rank estimation (MV-SPFM, $\rho = 0.8$), the
     SPLORA-PFM algorithm with only the L1-norm (LR+SPFM, $\rho=1$), and the
@@ -260,7 +260,7 @@ estimate improves with a lower BOLD/total voxels ratio.
     \includegraphics[width=\textwidth]{figures/low_rank/figure_2_no_G.pdf}
     \caption{A) Euclidean norm of the motion displacements (E-norm) (blue),
     DVARS (black) and global (gray) signals of the fMRI data; B) Grayplots of
-    gray matter (\acrshort*{gm}) and white matter (WM) of the preprocessed fMRI
+    gray matter (GM) and white matter (WM) of the preprocessed fMRI
     data, the estimated low-rank and neuronal-related components; C) Time series
     and F) maps of the estimated low-rank components; D) Time series and E) maps
     of representative single-trial neuronal-related (motor) activity. The color

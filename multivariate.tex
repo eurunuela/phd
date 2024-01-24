@@ -10,7 +10,7 @@
 This chapter proposes a novel hemodynamic deconvolution algorithm, multivariate
 sparse paradigm free mapping (Mv-SPFM), that operates at the whole brain level
 and adds spatial information via a mixed-norm regularization term over all
-voxels. Additionally, \acrshort*{mvspfm} employs the stability selection
+voxels. Additionally, Mv-SPFM employs the stability selection
 procedure that removes the need to select regularization parameters and also
 lets us obtain an estimate of the true probability of having a neuronal-related
 BOLD event at each voxel and time-point based on the area under the curve (AUC)
@@ -62,7 +62,7 @@ Costantini2022Anisotropic4DFiltering,Cherkaoui2021Multivariatesemiblind}, thus
 addressing the second limitation stated in the previous paragraph. In addition,
 one deconvolution algorithm has been presented that exploits the
 mono-exponential decay model of the multi-echo fMRI signal: multi-echo sparse
-\acrlong*{pfm} (ME-SPFM) \citep{CaballeroGaudes2019deconvolutionalgorithmmulti}.
+Paradigm Free Mapping (ME-SPFM) \citep{CaballeroGaudes2019deconvolutionalgorithmmulti}.
 Furthermore, approaches have been developed to deal with the third limitation
 stated above and estimate the likelihood of having a neuronal event at each
 time-point and for each voxel by means of logistic regression
@@ -85,7 +85,7 @@ neuronal activity more robust to the selection of the regularization parameters,
 while providing the likelihood of having a neuronal-related event at each
 time-point and for each voxel. Using multi-echo fMRI data acquired from 10
 healthy subjects (16 datasets) this chapter demonstrates that the proposed
-multivariate multi-echo \acrlong*{pfm} (MvME-SPFM) algorithm not only provides
+multivariate multi-echo Paradigm Free Mapping (MvME-SPFM) algorithm not only provides
 more robust estimates of the neuronal activity, but also yields a measure of the
 probability of each voxel containing a neuronal event at each time-point.
 Moreover, MvME-SPFM returns quantitative estimates of $\Delta R_2^*$ in
@@ -350,7 +350,7 @@ probability threshold to select the final set of non-zero coefficients
 \citep{Meinshausen2010Stabilityselection}, the area under the curve (AUC) of the
 stability path of each time-point is calculated as an index of confidence of
 having a non-zero coefficient across the evaluated range of $\lambda$. As a
-result, the \acrshort*{auc} timecourse provides a measure of the probability of
+result, the AUC timecourse provides a measure of the probability of
 having neuronal-related activity at each time-point and voxel. Next, the AUC
 time-series are thresholded according to the histogram of AUC values in a region
 of non-interest (hereinafter, denoted as the null AUC histogram) to yield a
@@ -584,7 +584,7 @@ task. Hence, in these events the TD thresholding strategy is able to adjust the
 threshold so that the final estimates of $\Delta R_2^*$ specifically capture
 task-activated voxels while excluding voxels that are affected by artifacts. The
 higher specificity of the TD thresholding strategy can be clearly seen in the
-\acrshort*{roc} values shown in \cref{fig:artifacts}H-L. The use of stability
+ROC values shown in \cref{fig:artifacts}H-L. The use of stability
 selection with the TD threshold yields more specific estimates of $\Delta R_2^*$
 than with ST thresholding or the original ME-SPFM method, while the sensitivity
 is slightly reduced. On the other hand, the use of stability selection with a ST
@@ -858,7 +858,7 @@ activity pattern related to the task.
 The proposed whole-brain (i.e., multivariate) formulation for hemodynamic
 deconvolution of multi-echo fMRI data with the use of stability selection
 achieved a closer agreement with the activation maps obtained with a
-single-trial GLM analysis than the original \acrshort*{mespfm} method
+single-trial GLM analysis than the original ME-SPFM method
 \citep{CaballeroGaudes2019deconvolutionalgorithmmulti} and other
 state-of-the-art multivariate deconvolution method like Hemolearn
 \citep{Cherkaoui2021Multivariatesemiblind}, while obviating the need to select

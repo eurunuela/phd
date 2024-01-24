@@ -17,7 +17,7 @@ or cm)
 In contrast, invasive electrophysiological techniques, including patch clamps
 \citep{Neher1978extracellularpatchclamp}, single-unit or multi-unit recordings
 \citep{Arieli1995Coherentspatiotemporalpatterns}, and electrocorticography
-(\acrshort*{ecog})
+(ECOG)
 \citep{Miller2007Realtimefunctional,Nir2008Interhemisphericcorrelationsslow},
 offer high spatial resolution.
 
@@ -28,11 +28,11 @@ millimeters, these techniques are capable of capturing activations in both
 cortical and deep brain structures, but their temporal resolution is limited by
 the sluggish dynamics of hemodynamic changes
 \citep{Dale2001Spatiotemporalmappingbrain}. fMRI offers higher temporal and
-spatial resolution compared to \acrshort*{pet}, making it more suitable for
+spatial resolution compared to PET, making it more suitable for
 studying the temporal responses to short neuronal-related events. However, PET
 has the advantage of measuring well-defined physiological quantities such as
 cerebral blood flow (CBF), cerebral blood volume (CBV), or cerebral metabolic
-rate of oxygen or \acrshort*{cmro2}
+rate of oxygen or CMRO2
 \citep{Fox1986Mappinghumanvisual,Friston1993FunctionalConnectivityPrincipal}.
 
 Functional MR spectroscopy (MRS) is an alternative method for metabolic imaging,
@@ -53,8 +53,8 @@ optical imaging device placed on the scalp to measure changes in cortical blood
 flow. However, due to the need for the light to penetrate through the skull,
 these techniques have lower spatial resolution compared to MR imaging techniques
 and are limited to studying the cortical surface. The temporal resolution of
-\acrshort*{eros} is similar to \acrshort*{meg} and \acrshort*{eeg} (in the order
-of milliseconds), while \acrshort*{nirs} has a ten times higher temporal
+EROS is similar to MEG and EEG (in the order
+of milliseconds), while NIRS has a ten times higher temporal
 resolution to fMRI.A notable advantage of optical imaging is its lower cost and
 portability compared to other techniques such as MRI or MEG.
 
@@ -65,11 +65,11 @@ thesis, it is essential to review some basic concepts related to the physical
 and physiological basis of the blood oxygen-level dependent (BOLD) effect. MRI
 techniques offer a range of approaches to detect the increased metabolic demand
 associated with brain function. These include utilizing the BOLD contrast,
-changes in \acrshort*{cbv} using contrast agents such as gadolinium
+changes in CBV using contrast agents such as gadolinium
 \citep{Dean1992CerebralHA}, ferumoxytol
 \citep{Christen2012Highresolutioncerebral} or hyperoxic contrasts
-\citep{Bulte2007Measurementcerebralblood}, and assessing \acrshort*{cbf} through
-arterial spin labeling techniques (\acrshort*{asl})
+\citep{Bulte2007Measurementcerebralblood}, and assessing CBF through
+arterial spin labeling techniques (ASL)
 \citep{Buxton2009IntroductionFunctionalMagnetic}. BOLD fMRI, introduced by
 \cite{Ogawa1990Brainmagneticresonance,Ogawa1992Intrinsicsignalchanges}, is
 particularly advantageous as it requires no exogenous contrast agent and
@@ -226,7 +226,7 @@ if correctly accounted for, scrubbing could reduce the degrees of freedom in
 statistical analysis \citep{Mascali2021Evaluationdenoisingstrategies}, leading
 to biases in second-level analysis between subjects that move too much and
 others, or introduce discontinuity in the signal itself, limiting the use of
-particular analyses dependent on signal continuity (e.g. \acrshort*{ica}, see
+particular analyses dependent on signal continuity (e.g. ICA, see
 \cite{CaballeroGaudes2017MethodscleaningBOLD}), and biasing the estimation of
 functional connectivity \citep{Mascali2021Evaluationdenoisingstrategies}.
 Moreover, interpolating the signal could introduce spurious changes in the
@@ -258,8 +258,8 @@ ICA components have been proposed in time, from full classifiers (FIX,
 specifically targeting motion artifacts (ICA-AROMA,
 \cite{Pruim2015ICAAROMArobust,Pruim2015EvaluationICAAROMA}).
 
-Alternatively, decomposing the signal of white matter (\acrshort*{wm}) and
-cerebrospinal fluid (\acrshort*{csf}) into principal components and considering
+Alternatively, decomposing the signal of white matter (WM) and
+cerebrospinal fluid (CSF) into principal components and considering
 the first few (a technique called anatomical CompCor, see
 \cite{Behzadi2007componentbasednoise}) can help retrieving proxies of
 motion-related artifacts and physiological fluctuations
@@ -269,7 +269,7 @@ artifacts than ICA based techniques and censoring
 \citep{Mascali2021Evaluationdenoisingstrategies}.
 
 Noise in fMRI can also be reduced by using multi-echo (ME) acquisitions that
-sample the data at multiple successive echo times (\acrshort*{te}). A weighted
+sample the data at multiple successive echo times (TE). A weighted
 combination of the multiple echoes based on each voxel's $T_2^*$ value
 \citep{Posse1999EnhancementBOLDcontrast} or temporal signal-to-noise ratio
 \citep{Poser2006BOLDcontrastsensitivity} can smear out random noise and enhance
@@ -308,10 +308,10 @@ Collecting more echoes opens up the possibility to leverage ICA and
 automatically classifying independent components into BOLD-related (i.e.,
 describing $\Delta R_2^*$ fluctuations with a linear TE-dependency) or noise
 (i.e., independent of TE, related to non-BOLD fluctuations in the net
-magnetization $\Delta \rho$), an approach known as \acrshort*{me} independent
+magnetization $\Delta \rho$), an approach known as ME independent
 component analysis (ME-ICA,
 \cite{Kundu2013Integratedstrategyimproving,Kundu2012DifferentiatingBOLDnon,Kundu2017MultiechofMRI}).
-Compared to single-echo data denoising, \acrshort*{meica} can improve the
+Compared to single-echo data denoising, MEICA can improve the
 mapping of task-induced activation
 \citep{DuPre2021TEdependentanalysis,GonzalezCastillo2016Evaluationmultiecho,Lombardo2016Improvingeffectsize},
 for example in challenging paradigms with slow-varying stimuli
@@ -401,7 +401,7 @@ successfully to denoise BOLD signal from physiological fluctuations after
 RETROICOR, especially when convolved with a modelled response function, cardiac
 \citep{Chang2009Influenceheartrate} or respiratory
 \citep{Birn2008respirationresponsefunction}. Various alternatives to
-\acrshort*{rvt} to improve breathing-related denoising have been proposed,
+RVT to improve breathing-related denoising have been proposed,
 either to simplify their calculation, that is normally based on the peak
 detection in the respiratory signal, or to improve the detection of particular
 changes in the respiratory signal. For instance,
@@ -415,13 +415,13 @@ Hilbert transform to compute RVT improves the characterisations of breathing
 rhythms and the detection of deep breaths. Although the regions impacted by slow
 variations in cardiac rate and breathing patterns frequently overlap
 \citep{Chang2009Influenceheartrate,Kassinopoulos2019Identificationphysiologicalresponse},
-\acrshort*{hr} and RVT regressor can be used together for better performance
+HR and RVT regressor can be used together for better performance
 \citep{Chang2009Influenceheartrate}.
 
 Another physiological confound related to RVT consists in spontaneous changes in
 arterial CO2, called poikilocapnia, which act as a vasoactive process. These
 fluctuations have been corroborated with Transcranial Doppler ultrasound
-(\acrshort*{tcd}) and induce low frequency fluctuations in the BOLD signal. If
+(TCD) and induce low frequency fluctuations in the BOLD signal. If
 they are not accounted for, they can induce a bias in the signal estimation in
 up to a fifth of the cortex \citep{Wise2004Restingfluctuationsarterial}. The
 pattern of biases induced by poikilocapnia has been found comparable to that of
@@ -456,7 +456,7 @@ modeling conditions of interest or signals of non interest (e.g., noise-related
 signals) can be added as the columns of the design matrix $\mathbf{X} =
 \left[\mathbf{x}_1, \dots, \mathbf{x}_L\right] \in \mathbb{R}^{N\times L}$,
 where $L$ is the number of regressors, which leads to the well-known
-\acrshort*{glm} equation:
+GLM equation:
 \begin{equation}
     \mathbf{y} = \mathbf{X} \mathbf{\beta} + \mathbf{\epsilon},
 \end{equation}
@@ -492,7 +492,7 @@ pairwise Pearson correlation between the timecourse of different voxels or
 regions of the brain, presenting the brain's interregional connections or edges
 in the form of a FC matrix. Each edge in the matrix represents the strength or
 intensity of the functional connectivity between two regions. In fact,
-\acrshort*{fc} has been extensively utilized to investigate the arrangement of
+FC has been extensively utilized to investigate the arrangement of
 large-scale brain networks
 \citep{Salvador2005NeurophysiologicalArchitectureFunctional,Yeo2011organizationhumancerebral,Margulies2016Situatingdefaultmode},
 as well as to partition smaller brain structures like the thalamus and striatum
@@ -529,7 +529,7 @@ using sliding-window approaches
 A sliding-window FC analysis yields a series of time-varying matrices, which are
 often effectively condensed into a few distinct brain states using clustering
 techniques \citep{Hutchison2013Dynamicfunctionalconnectivity}. In particular, it
-has been shown that \acrshort*{dfc} correlates with underlying neural activity
+has been shown that dFC correlates with underlying neural activity
 \citep{Tagliazucchi2012Criticalitylargescale,Thompson2013Neuralcorrelatestime,Keilholz2014NeuralBasisTime}
 and behavior \citep{Liegeois2019Restingbraindynamics}. Furthermore, studies have
 demonstrated that dynamic connectivity fluctuations exhibit lower variability
@@ -574,7 +574,7 @@ clustering algorithms (e.g. k-means)
 Another alternative method for analyzing single timeframe resting-state fMRI
 data involves investigating co-activation patterns (CAP)
 \citep{Tagliazucchi2012Criticalitylargescale,Liu2013Decompositionspontaneousbrain,Chen2015Introducingcoactivation,Liu2018Coactivationpatterns}.
-Unlike the phase synchrony approach, \acrshort*{cap} analyses focus on
+Unlike the phase synchrony approach, CAP analyses focus on
 identifying simultaneous occurrences of BOLD signal peaks or troughs in
 different brain regions, disregarding the phase of the signal, assuming that the
 relationship between the BOLD signal and neural activity is attributed to these
@@ -600,7 +600,7 @@ Hemodynamic deconvolution is commonly used in investigating psychophysiologic
 interactions (PPI) within task-based functional connectivity studies
 \citep{Gerchen2014Analyzingtaskdependent,Gitelman2003Modelingregionalpsychophysiologic}
 as well as in resting-state fMRI \citep{Di2015Characterizationsrestingstate}.
-Recent deconvolution techniques, in contrast to classical \acrshort*{ppi}
+Recent deconvolution techniques, in contrast to classical PPI
 analysis, employ sparsity-promoting estimators that assume the dynamics of
 spontaneous brain activity can be characterized by sparse BOLD events
 \citep{Gaudes2013Paradigmfreemapping,Karahanoglu2013TotalactivationfMRI,Petridou2013PeriodsrestfMRI,Urunuela2023HemodynamicDeconvolutionDemystified}.
@@ -621,7 +621,7 @@ Evidence from the study conducted by
 well-known resting-state networks, including the default mode network, can be
 subdivided into multiple subsystems with distinct temporal dynamics. This
 suggests the existence of functionally diverse subnetworks within these
-networks. Furthermore, by backprojecting \acrshort*{icaps} to deconvolved fMRI
+networks. Furthermore, by backprojecting iCAPs to deconvolved fMRI
 volumes, it becomes possible to reconstruct iCAP time courses and assess
 temporal overlaps between different patterns
 \citep{Zoller2019RobustRecoveryTemporal}. Notably, it has been observed that, on
@@ -642,11 +642,11 @@ template of BOLD dynamics is obtained. Interestingly, these templates often
 reveal patterns that reflect global signal fluctuations, representing the
 average time course of the BOLD signal across the entire brain
 \citep{Yousefi2018Quasiperiodicpatterns,Bolt2022parsimoniousdescriptionglobal}.
-Furthermore, these \acrshort*{qpp}s have been found to correlate with local
+Furthermore, these QPPs have been found to correlate with local
 infraslow neural activity \citep{Thompson2014Quasiperiodicpatterns}. The
 predominant QPP typically exhibits a sequence characterized by a transition from
 strong activation of the default mode network (DMN) and deactivation of sensory
-and attention networks to the opposite state, with \acrshort*{dmn} deactivation
+and attention networks to the opposite state, with DMN deactivation
 and activation of sensory and attention networks
 \citep{Abbas2019Quasiperiodicpatterns,Yousefi2021Propagatingpatternsintrinsic}.
 
@@ -658,14 +658,14 @@ be identified when multiple timecourses exhibit extreme signal changes
 simultaneously (i.e. co-activation)
 \citep{Esfahlani2020Highamplitudecofluctuations,Faskowitz2020Edgecentricfunctional}.
 These edge-centric FC (eFC) approach has recently gained notable popularity in
-brain imaging and neuroscience, showing that \acrshort*{efc} offers large
+brain imaging and neuroscience, showing that eFC offers large
 replicability, stability within individuals across multiple scanning sessions,
 and reliability across datasets \citep{Faskowitz2020Edgecentricfunctional}.
 Moreover, clustering the eFC has revealed overlapping brain communities that
 hold promise for studying cognition and behavior beyond the limitations of
 traditional disjoint brain parcellations. However, the main findings of the
 edge-centric analyses can be derived from a node-centric FC perspective
-\acrshort*{nfc} (i.e., the commonly-used FC matrix) under a static null
+nFC (i.e., the commonly-used FC matrix) under a static null
 hypothesis that disregards temporal correlations
 \citep{Novelli2022mathematicalperspectiveedge}. Consequently, the findings
 obtained with  eFC-based methods can be also applied to nFC-based approaches,
@@ -681,9 +681,9 @@ paradigms, and clinical-based studies.
 In \cref{cha:synthesis_analysis} the theoretical background of hemodynamic
 deconvolution is presented with a focus on the two different mathematical
 formulations, i.e., analysis and synthesis, and the associated algorithms: Total
-Activation and \acrlong*{pfm}. This chapter will aim to compare the two methods
+Activation and Paradigm Free Mapping. This chapter will aim to compare the two methods
 (that work at the individual voxel level), assess whether they are equivalent,
-and how they compare with \acrlong*{cap} analysis.
+and how they compare with Coactivation Pattern analysis.
 
 \cref{cha:stability} addresses the challenge of determining adequate
 regularization parameters for hemodynamic deconvolution. The method of stability
@@ -753,7 +753,7 @@ contributions of this thesis:
     \textit{Medical Image Analysis}, 103010.
     \url{https://doi.org/10.1016/j.media.2023.103010}}
     \item {\textbf{\cref{cha:low-rank}:} Uruñuela, E., Moia, S., \&
-    Caballero-Gaudes, C. (2021, April). A Low Rank and Sparse \acrlong*{pfm}
+    Caballero-Gaudes, C. (2021, April). A Low Rank and Sparse Paradigm Free Mapping
     Algorithm for Deconvolution of fMRI Data. \textit{In 2021 IEEE 18th
     International Symposium on Biomedical Imaging (ISBI) (pp. 1726-1729)}.
     \url{https://doi.org/10.1109/ISBI48211.2021.9433821}}
@@ -803,7 +803,7 @@ contributions of this thesis:
     Chapter of the International Society of Magnetic Resonance in Medicine
     (2021)}, Virtual.}
     \item {Uruñuela, E., Moia, S., Caballero-Gaudes, C. fMRI deconvolution with
-    Synthesis-Based \acrlong*{pfm} and Analysis-Based Total Activation Operate
+    Synthesis-Based Paradigm Free Mapping and Analysis-Based Total Activation Operate
     Identically. \textit{30th Annual Meeting of the International Society of
     Magnetic Resonance in Medicine (2021)}, Virtual.}
     \item {Uruñuela, E., Moia, S., Caballero-Gaudes, C. Low-Rank and Sparse
@@ -812,10 +812,10 @@ contributions of this thesis:
     Society of Magnetic Resonance in Medicine (2021)}, Virtual.}
     \item {Uruñuela, E., Jones, S., Crawford, A., Shin, W., Oh, S., Lowe, M.,
     Caballero-Gaudes, C. Improving Deconvolution of fMRI Signal with Sparse
-    \acrlong*{pfm} Using Stability Selection. \textit{26th Annual Meeting of the
+    Paradigm Free Mapping Using Stability Selection. \textit{26th Annual Meeting of the
     Organization for Human Brain Mapping (2020)}, Virtual.}
     \item {Uruñuela, E., Moia, S., Gonzalez-Castillo, J., Caballero-Gaudes, C.
     Deconvolution of Multi-Echo Functional MRI Data with Multivariate Multi-Echo
-    Sparse \acrlong*{pfm}. \textit{27th Annual Meeting of the International
+    Sparse Paradigm Free Mapping. \textit{27th Annual Meeting of the International
     Society of Magnetic Resonance in Medicine (2019)}, Montreal, Canada.}
 \end{itemize}
