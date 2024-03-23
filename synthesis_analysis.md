@@ -1,7 +1,7 @@
 (cha-synthesis-analysis)=
 # Chapter 2: Synthesis-Based and Analysis-Based Hemodynamic Deconvolution for fMRI
 
-This chapter was published as \cite{Urunuela2023HemodynamicDeconvolutionDemystified}.
+This chapter was published as @Urunuela2023HemodynamicDeconvolutionDemystified.
 
 Deconvolution of the hemodynamic response is an important step to access short
 timescales of brain activity recorded by functional magnetic resonance imaging
@@ -25,146 +25,120 @@ deconvolution, and aims to answer questions regarding the differences between
 the two methods.
 
 % Introduction
-\section{Introduction}
-\label{sec:synthesis_introduction}
+(sec-synthesis-introduction)=
+## Introduction
 
 Functional magnetic resonance imaging (fMRI) data analysis is often directed to
 identify and disentangle the neural processes that occur in different brain
 regions during task or at rest. As the blood oxygenation level-dependent (BOLD)
-signal of fMRI \citep{Ogawa1990Brainmagneticresonance} is only a proxy for
+signal of fMRI [@Ogawa1990Brainmagneticresonance] is only a proxy for
 neuronal activity mediated through neurovascular coupling
-\citep{Logothetis2001Neurophysiologicalinvestigationbasis}, an intermediate step
+[@Logothetis2001Neurophysiologicalinvestigationbasis], an intermediate step
 that estimates the activity-inducing signal, at the timescale of fMRI, from the
 BOLD timeseries can be useful. Conventional analysis of task fMRI data relies on
 the general linear models (GLM) to establish statistical parametric maps of
 brain activity by regression of the empirical timecourses against hypothetical
 ones built from the knowledge of the experimental paradigm
-\citep{Boynton1996LinearSystemsAnalysis,Cohen1997ParametricAnalysisfMRI,Friston1998EventRelatedfMRI,Friston2008DEMvariationaltreatment}.
+[@Boynton1996LinearSystemsAnalysis;@Cohen1997ParametricAnalysisfMRI;@Friston1998EventRelatedfMRI;@Friston2008DEMvariationaltreatment].
 However, timing information of the paradigm can be unknown, inaccurate, or
 insufficient in some scenarios such as naturalistic stimuli, resting-state, or
 clinically-relevant assessments.
 
-Deconvolution and methods alike are aiming to estimate neuronal activity by
-undoing the blurring effect of the hemodynamic response, characterized as a
-hemodynamic response function (HRF)\footnote{Note that the term deconvolution is
-also alternatively employed to refer to the estimation of the hemodynamic
-response shape assuming a known activity-inducing signal or neuronal activity
-\citep{Goutte2000Modelinghaemodynamicresponse,Marrelec2002Bayesianestimationhemodynamic,
-Ciuciu2003Unsupervisedrobustnonparametric,Casanova2008impacttemporalregularization}.
-}. Given the inherently ill-posed nature of hemodynamic deconvolution, due to
-the sluggish characteristics of the HRF, the key is to introduce
-additional constraints in the estimation problem that are typically expressed as
-regularization terms. For instance, the so-called Wiener deconvolution is
-expressing a \enquote{minimal energy} constraint on the deconvolved signal, and
-has been used in the framework of psychophysiological interaction analysis to
-compute the interaction between a seed's activity-inducing timecourse and an
-experimental modulation
-\citep{Glover1999DeconvolutionImpulseResponse,Gitelman2003Modelingregionalpsychophysiologic,
-Gerchen2014Analyzingtaskdependent,Di2018TaskConnectomicsExamining,
-Freitas2020Timeresolvedeffective}. Complementarily, the interest in
-deconvolution has increased to explore time-varying activity in resting-state
-fMRI data
-\citep{Preti2017dynamicfunctionalconnectome,Keilholz2017TimeResolvedResting,
-Lurie2020Questionscontroversiesstudy,Bolton2020TappingMultiFaceted}. In that
-case, the aim is to gain better insights of the neural signals that drive
-functional connectivity at short time scales, as well as learning about the
-spatio-temporal structure of functional components that dynamically construct
-resting-state networks and their interactions
-\citep{Karahanoglu2017Dynamicslargescale}.
+Deconvolution and methods alike are aiming to estimate neuronal activity by undoing the blurring
+effect of the hemodynamic response, characterized as a hemodynamic response function
+(HRF)[^hemodynamic]. Given the inherently ill-posed nature of hemodynamic deconvolution, due to the
+sluggish characteristics of the HRF, the key is to introduce additional constraints in the
+estimation problem that are typically expressed as regularization terms. For instance, the
+so-called Wiener deconvolution is expressing a "minimal energy" constraint on the deconvolved
+signal, and has been used in the framework of psychophysiological interaction analysis to compute
+the interaction between a seed's activity-inducing timecourse and an experimental modulation
+[@Glover1999DeconvolutionImpulseResponse;@Gitelman2003Modelingregionalpsychophysiologic;@Gerchen2014Analyzingtaskdependent;@Di2018TaskConnectomicsExamining;@Freitas2020Timeresolvedeffective].
+Complementarily, the interest in deconvolution has increased to explore time-varying activity in
+resting-state fMRI data
+[@Preti2017dynamicfunctionalconnectome;@Keilholz2017TimeResolvedResting;@Lurie2020Questionscontroversiesstudy;@Bolton2020TappingMultiFaceted].
+In that case, the aim is to gain better insights of the neural signals that drive functional
+connectivity at short time scales, as well as learning about the spatio-temporal structure of
+functional components that dynamically construct resting-state networks and their interactions
+[@Karahanoglu2017Dynamicslargescale].
 
 Deconvolution of the resting-state fMRI signal has illustrated the significance
 of transient, sparse spontaneous events
-\citep{Petridou2013PeriodsrestfMRI,Allan2015FunctionalConnectivityMRI} that
+[@Petridou2013PeriodsrestfMRI;@Allan2015FunctionalConnectivityMRI] that
 refine the hierarchical clusterization of functional networks
-\citep{Karahanoglu2013TotalactivationfMRI} and reveal their temporal overlap
+[@Karahanoglu2013TotalactivationfMRI] and reveal their temporal overlap
 based on their signal innovations not only in the human brain
-\citep{Karahanoglu2015Transientbrainactivity}, but also in the spinal cord
-\citep{Kinany2020DynamicFunctionalConnectivity}. Similar to task-related
+[@Karahanoglu2015Transientbrainactivity], but also in the spinal cord
+[@Kinany2020DynamicFunctionalConnectivity]. Similar to task-related
 studies, deconvolution allows to investigate modulatory interactions within and
 between resting-state functional networks
-\citep{Di2013ModulatoryInteractionsResting,Di2015Characterizationsrestingstate}.
+[@Di2013ModulatoryInteractionsResting;@Di2015Characterizationsrestingstate].
 In addition, decoding of the deconvolved spontaneous events allows to decipher
 the flow of spontaneous thoughts and actions across different cognitive and
 sensory domains while at rest
-\citep{Karahanoglu2015Transientbrainactivity,GonzalezCastillo2019Imagingspontaneousflow,Tan2017DecodingfMRIevents}.
+[@Karahanoglu2015Transientbrainactivity;@GonzalezCastillo2019Imagingspontaneousflow;@Tan2017DecodingfMRIevents].
 Beyond findings on healthy subjects, deconvolution techniques have also proven
 its utility in clinical conditions to characterize functional alterations of
 patients with a progressive stage of multiple sclerosis at rest
-\citep{Bommarito2021Alteredanteriordefault}, to find functional signatures of
+[@Bommarito2021Alteredanteriordefault], to find functional signatures of
 prodromal psychotic symptoms and anxiety at rest on patients suffering from
-schizophrenia \citep{Zoeller2019LargeScaleBrain}, to detect the foci of
+schizophrenia [@Zoeller2019LargeScaleBrain], to detect the foci of
 interictal events in epilepsy patients without an EEG recording
-\citep{Lopes2012Detectionepilepticactivity,Karahanoglu2013Spatialmappinginterictal},
+[@Lopes2012Detectionepilepticactivity;@Karahanoglu2013Spatialmappinginterictal],
 or to study functional dissociations observed during non-rapid eye movement
 sleep that are associated with reduced consolidation of information and impaired
-consciousness \citep{Tarun2021NREMsleepstages}.
+consciousness [@Tarun2021NREMsleepstages].
 
-The algorithms for hemodynamic deconvolution can be classified based on the
-assumed hemodynamic model and the optimization problem used to estimate the
-neuronal-related signal. Most approaches assume a linear time-invariant model
-for the hemodynamic response that is inverted by means of variational
-(regularized) least squares estimators
-\citep{Glover1999DeconvolutionImpulseResponse,Gitelman2003Modelingregionalpsychophysiologic,
-Gaudes2010Detectioncharacterizationsingle,Gaudes2012Structuredsparsedeconvolution,
-Gaudes2013Paradigmfreemapping,CaballeroGaudes2019deconvolutionalgorithmmulti,
-HernandezGarcia2011Neuronaleventdetection,Karahanoglu2013TotalactivationfMRI,
-Cherkaoui2019Sparsitybasedblind,
-Huetel2021Hemodynamicmatrixfactorization,Costantini2022Anisotropic4DFiltering},
+The algorithms for hemodynamic deconvolution can be classified based on the assumed hemodynamic
+model and the optimization problem used to estimate the neuronal-related signal. Most approaches
+assume a linear time-invariant model for the hemodynamic response that is inverted by means of
+variational (regularized) least squares estimators
+[@Glover1999DeconvolutionImpulseResponse;@Gitelman2003Modelingregionalpsychophysiologic;@Gaudes2010Detectioncharacterizationsingle;@Gaudes2012Structuredsparsedeconvolution;@Gaudes2013Paradigmfreemapping;@CaballeroGaudes2019deconvolutionalgorithmmulti;@HernandezGarcia2011Neuronaleventdetection;@Karahanoglu2013TotalactivationfMRI;@Cherkaoui2019Sparsitybasedblind;@Huetel2021Hemodynamicmatrixfactorization;@Costantini2022Anisotropic4DFiltering],
 logistic functions
-\citep{Bush2013Decodingneuralevents,Bush2015deconvolutionbasedapproach,
-Loula2018DecodingfMRIactivity}, probabilistic mixture models
-\citep{Pidnebesna2019EstimatingSparseNeuronal}, convolutional autoencoders
-\citep{Huetel2018NeuralActivationEstimation} or nonparametric homomorphic
-filtering \citep{Sreenivasan2015NonparametricHemodynamicDeconvolution}.
-Alternatively, several methods have also been proposed to invert non-linear
-models of the neuronal and hemodynamic coupling
-\citep{Riera2004statespacemodel,Penny2005Bilineardynamicalsystems,Friston2008DEMvariationaltreatment,
-Havlicek2011Dynamicmodelingneuronal,Aslan2016Jointstateparameter,
-Madi2017HybridCubatureKalman,RuizEuler2018NonlinearDeconvolutionSampling}.
+[@Bush2013Decodingneuralevents;@Bush2015deconvolutionbasedapproach;@Loula2018DecodingfMRIactivity],
+probabilistic mixture models [@Pidnebesna2019EstimatingSparseNeuronal], convolutional autoencoders
+[@Huetel2018NeuralActivationEstimation] or nonparametric homomorphic filtering
+[@Sreenivasan2015NonparametricHemodynamicDeconvolution]. Alternatively, several methods have also
+been proposed to invert non-linear models of the neuronal and hemodynamic coupling
+[@Riera2004statespacemodel;@Penny2005Bilineardynamicalsystems;@Friston2008DEMvariationaltreatment;@Havlicek2011Dynamicmodelingneuronal;@Aslan2016Jointstateparameter;@Madi2017HybridCubatureKalman;@RuizEuler2018NonlinearDeconvolutionSampling].
 
 Among the variety of approaches, those based on regularized least squares
 estimators have been employed more often due to their appropriate performance at
 small spatial scales (e.g., voxelwise). Relevant for this work, two different
 formulations can be established for the regularized least-squares deconvolution
 problem, either based on a synthesis- or analysis-based model
-\citep{Elad2007Analysisversussynthesis,Ortelli2019Synthesisanalysistotal}. On
+[@Elad2007Analysisversussynthesis;@Ortelli2019Synthesisanalysistotal]. On
 the one hand, Paradigm Free Mapping is based on a synthesis formulation that is solved
 by means of regularized least-squares estimators such as ridge-regression
-\citep{Gaudes2010Detectioncharacterizationsingle} or LASSO
-\citep{Gaudes2013Paradigmfreemapping}. The rationale of the synthesis-based
+[@Gaudes2010Detectioncharacterizationsingle] or LASSO
+[@Gaudes2013Paradigmfreemapping]. The rationale of the synthesis-based
 model is that we know or suspect that the true signal (here, the
 neuronally-driven BOLD component of the fMRI signal) can be represented as a
 linear combination of predefined patterns or dictionary atoms (for instance, the
 hemodynamic response function). On the other hand, Total Activation is based on
 a analysis formulation that is solved with a regularized least-squares estimator
 using generalized total variation
-\citep{Karahanoglu2011SignalProcessingApproach,Karahanoglu2013TotalactivationfMRI}.
+[@Karahanoglu2011SignalProcessingApproach;@Karahanoglu2013TotalactivationfMRI].
 The rationale of the analysis-based approach considers that the true signal is
 analyzed by some relevant hemodynamic operator
-\citep{Khalidov2011ActiveletsWaveletssparse} and the resulting signal is sparse
+[@Khalidov2011ActiveletsWaveletssparse] and the resulting signal is sparse
 in time.
 
-The users of these algorithms have often questioned about the similarities and
-differences between the two methods and which one is better. To clarify this
-point, this chapter initially presents the theory behind these two deconvolution
-approaches: Paradigm Free Mapping (PFM) \citep{Gaudes2013Paradigmfreemapping} --- available
-in AFNI as
-\textit{3dPFM}\footnote{\url{https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dPFM.html}}
-and
-\textit{3dMEPFM}\footnote{\url{https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dMEPFM.html}}
-for single-echo and multi-echo data, respectively --- and Total Activation (TA)
-\citep{Karahanoglu2013TotalactivationfMRI} --- available as part of the
-\textit{iCAPs toolbox}\footnote{\url{https://c4science.ch/source/iCAPs/}}. The
-chapter describes the similarities and differences in their analytical
-formulations, and how they can be related to each other. Next, their performance
-is assessed controlling for a fair comparison on simulated and experimental
-data. Finally, the chapter discusses their benefits and shortcomings and
-conclude with our vision on potential extensions and developments.
+The users of these algorithms have often questioned about the similarities and differences between
+the two methods and which one is better. To clarify this point, this chapter initially presents the
+theory behind these two deconvolution approaches: Paradigm Free Mapping (PFM)
+[@Gaudes2013Paradigmfreemapping] -- available in AFNI as *3dPFM*[^3dPFM] and *3dMEPFM*[^3dMEPFM]
+for single-echo and multi-echo data, respectively -- and Total Activation (TA)
+[@Karahanoglu2013TotalactivationfMRI] -- available as part of the *iCAPs toolbox*[^iCAPs]. The
+chapter describes the similarities and differences in their analytical formulations, and how they
+can be related to each other. Next, their performance is assessed controlling for a fair comparison
+on simulated and experimental data. Finally, the chapter discusses their benefits and shortcomings
+and conclude with our vision on potential extensions and developments.
 
 % Theory
-\section{Theory}
-\label{sec:synthesis_theory}
-\subsection{Notations and Definitions}
+(sec-synthesis-theory)=
+## Theory
+
+### Notations and Definitions
 
 Matrices of size $N$ rows and $M$ columns are denoted by boldface capital
 letters, e.g., $\mathbf{X} \in \mathbb{R}^{N\times M}$, whereas column vectors
@@ -177,7 +151,7 @@ $\| \mathbf{X} \|_1$ and the Frobenius norm is denoted by $\| \mathbf{X} \|_F$.
 The discrete integration ($\mathbf{L}$) and difference ($\mathbf{D}$) operators
 are defined as:
 
-$$
+```{math}
 \mathbf{L} = \left[\begin{array}{ccccc}
 1 & 0 & \ldots & & \\
 1 & 1 & 0 & \ldots & \\
@@ -189,9 +163,9 @@ $$
 0 & \ddots & \ddots & \ddots & \ldots \\
 \vdots & \ddots & 0 & 1 & -1
 \end{array}\right].
-$$
+```
 
-\subsection{General Linear Model Analysis}
+### General Linear Model Analysis
 
 A conventional general linear model (GLM) analysis puts forward a number of
 regressors incorporating the knowledge about the paradigm or behavior. For
@@ -199,20 +173,23 @@ instance, the timing of epochs for a certain condition can be modeled as an
 indicator function $p(t)$ (e.g., Dirac functions for event-related designs or
 box-car functions for block-designs) convolved with the hemodynamic response
 function (HRF) $h(t)$, and sampled at the repetition time (TR) resolution
-\citep{Friston1994AnalysisfunctionalMRI,Friston1998EventRelatedfMRI,
-Boynton1996LinearSystemsAnalysis,Cohen1997ParametricAnalysisfMRI}:
-$$
-   x(t) = p*h(t) \rightarrow x[k] = p*h(k\cdot\text{TR}).
-$$
+[@Friston1994AnalysisfunctionalMRI;@Friston1998EventRelatedfMRI;@Boynton1996LinearSystemsAnalysis;@Cohen1997ParametricAnalysisfMRI]:
+
+```{math}
+x(t) = p*h(t) \rightarrow x[k] = p*h(k\cdot\text{TR}).
+```
+
 The vector $\mathbf{x}=[x[k]]_{k=1,\ldots,N} \in \mathbb{R}^{N}$ then
 constitutes the regressor modelling the hypothetical response, and several of
 them can be stacked as columns of the design matrix $\mathbf{X}=[\mathbf{x}_1
 \ldots \mathbf{x}_L] \in \mathbb{R}^{N \times L}$, leading to the well-known GLM
 formulation:
-\begin{equation}
-    \label{eq:glm}
-    \mathbf{y} = \mathbf{X} \boldsymbol\beta + \mathbf{e},
-\end{equation}
+
+```{math}
+:label: eq-glm
+\mathbf{y} = \mathbf{X} \boldsymbol\beta + \mathbf{e},
+```
+
 where the empirical timecourse $\mathbf{y} \in \mathbb{R}^{N}$ is explained by a
 linear combination of the regressors in $\mathbf{X}$ weighted by the parameters
 in $\boldsymbol\beta \in \mathbb{R}^{L}$ and corrupted by additive noise
@@ -223,16 +200,18 @@ minimizing the residual sum of squares between the fitted model and
 measurements. The number of regressors $L$ is typically much less than the
 number of measurements $N$, and thus the regression problem is over-determined
 and does not require additional constraints or assumptions
-\citep{Henson2007CHAPTER14Convolution}.
+[@Henson2007CHAPTER14Convolution].
 
 In the deconvolution approach, no prior knowledge of the hypothetical response
 is taken into account, and the purpose is to estimate the deconvolved
 activity-inducing signal $\mathbf{s}$ from the measurements $\mathbf{y}$, which
 can be formulated as the following signal model
-\begin{equation}
-    \label{eq:synthesis_model}
-    \mathbf{y} = \mathbf{Hs} + \mathbf{e},
-\end{equation}
+
+```{math}
+:label: eq-synthesis_model
+\mathbf{y} = \mathbf{Hs} + \mathbf{e},
+```
+
 where $\mathbf{H} \in \mathbb{R}^{N \times N}$ is a Toeplitz matrix that
 represents the discrete convolution with the HRF, and $\mathbf{s} \in
 \mathbb{R}^{N}$ is a length-$N$ vector with the unknown activity-inducing
@@ -246,22 +225,24 @@ multiplication with the HRF matrix represents a convolution operator. Second,
 determining $\mathbf{s}$ is an ill-posed problem given the nature of the HRF. As
 it can be seen intuitively, the convolution matrix $\mathbf{H}$ is highly
 collinear (i.e., its columns are highly correlated) due to large overlap between
-shifted HRFs (see \cref{fig:sim_and_hrf}C), thus introducing uncertainty in the
+shifted HRFs (see [](#fig:sim_and_hrf)C), thus introducing uncertainty in the
 estimates of $\mathbf{s}$ when noise is present. Consequently, additional
 assumptions under the form of regularization terms (or priors) in the estimate
 are needed to reduce their variance. In the least squares sense, the
 optimization problem to solve is given by
-\begin{equation}
-    \label{eq:regularized_least_squares}
-    \hat{\mathbf{s}} = \arg \min_{\mathbf{s}} \frac{1}{2} \| \mathbf{y} - \mathbf{Hs} \|_2^2 + \Omega(\mathbf{s}).
-\end{equation}
+
+```{math}
+:label: eq-regularized-least-squares
+\hat{\mathbf{s}} = \arg \min_{\mathbf{s}} \frac{1}{2} \| \mathbf{y} - \mathbf{Hs} \|_2^2 + \Omega(\mathbf{s}).
+```
+
 The first term quantifies data fitness, which can be justified as the
 log-likelihood term derived from Gaussian noise assumptions, while the second
-term \(\Omega(\mathbf{s})\) brings in regularization and can be interpreted as a
+term $\Omega(\mathbf{s})$ brings in regularization and can be interpreted as a
 prior on the activity-inducing signal. For example, the $\ell_2$-norm of
 $\mathbf{s}$ (i.e., $\Omega(\mathbf{s})=\lambda \left\| \mathbf{s}\right\|_2^2$)
 is imposed for ridge regression or Wiener deconvolution, which introduces a
-trade-off between the data fit term and \enquote{energy} of the estimates that
+trade-off between the data fit term and "energy" of the estimates that
 is controlled by the regularization parameter $\lambda$. Other well-known
 regularized terms are related to the elastic net (i.e.,
 $\Omega(\mathbf{x})=\lambda_1\|\mathbf{x}\|_2^2 + \lambda_2\|\mathbf{x}\|_1$)
@@ -271,50 +252,56 @@ $\Omega(\mathbf{x})=\lambda_1\|\mathbf{x}\|_2^2 + \lambda_2\|\mathbf{x}\|_1$)
 % Paradigm Free Mapping
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Paradigm Free Mapping} In Paradigm Free Mapping (PFM), the formulation of
-\cref{eq:regularized_least_squares} was considered equivalently as fitting the
+### Paradigm Free Mapping
+
+In Paradigm Free Mapping (PFM), the formulation of
+[Eq. %s](#eq-regularized-least-squares) was considered equivalently as fitting the
 measurements using the atoms of the HRF dictionary (i.e., columns of
 $\mathbf{H}$) with corresponding weights (entries of $\mathbf{s}$). This model
 corresponds to a synthesis formulation. In \cite{Gaudes2013Paradigmfreemapping}
 a sparsity-pursuing regularization term was introduced on $\mathbf{s}$, which in
-a strict way reverts to choosing \(\Omega(\mathbf{s})=\lambda \| \mathbf{s}
-\|_0\) as the regularization term and solving the optimization problem
-\citep{Bruckstein2009SparseSolutionsSystems}. However, finding the optimal
+a strict way reverts to choosing $\Omega(\mathbf{s})=\lambda \| \mathbf{s}
+\|_0$ as the regularization term and solving the optimization problem
+[@Bruckstein2009SparseSolutionsSystems]. However, finding the optimal
 solution to the problem demands an exhaustive search across all possible
-combinations of the columns of \(\mathbf{H}\). Hence, a  pragmatic solution is
-to solve the convex-relaxed optimization problem for the \(l_1\)-norm, commonly
-known as Basis Pursuit Denoising \citep{Chen2001Atomicdecompositionbasis} or
+combinations of the columns of $\mathbf{H}$. Hence, a  pragmatic solution is
+to solve the convex-relaxed optimization problem for the $l_1$-norm, commonly
+known as Basis Pursuit Denoising [@Chen2001Atomicdecompositionbasis] or
 equivalently as the least absolute shrinkage and selection operator (LASSO)
-\citep{Tibshirani1996RegressionShrinkageSelection}:
-\begin{equation}
-    \label{eq:pfm_spike}
-    \hat{\mathbf{s}} = \arg \min_{\mathbf{s}} \frac{1}{2} \| \mathbf{y} - \mathbf{Hs} \|_2^2 + \lambda \| \mathbf{s} \|_1,
-\end{equation}
-which provides fast convergence to a global solution. Imposing sparsity on the
-activity-inducing signal implies that it is assumed to be well represented by a
-reduced subset of few non-zero coefficients at the fMRI timescale, which in turn
-trigger event-related BOLD responses. Hereinafter, this assumption is referred
-to as the \textit{spike model}. However, even if PFM was developed as a spike
-model, its formulation in \cref{eq:pfm_spike} can be extended to estimate the
-innovation signal, i.e., the derivative of the activity-inducing signal, as
-shown in \cref{sec:unifying_both_perspectives}.
+[@Tibshirani1996RegressionShrinkageSelection]:
+
+```{math}
+:label: eq-pfm-spike
+\hat{\mathbf{s}} = \arg \min_{\mathbf{s}} \frac{1}{2} \| \mathbf{y} - \mathbf{Hs} \|_2^2 + \lambda \| \mathbf{s} \|_1,
+```
+
+which provides fast convergence to a global solution. Imposing sparsity on the activity-inducing
+signal implies that it is assumed to be well represented by a reduced subset of few non-zero
+coefficients at the fMRI timescale, which in turn trigger event-related BOLD responses.
+Hereinafter, this assumption is referred to as the *spike model*. However, even if PFM was
+developed as a spike model, its formulation in [Eq. %s](eq-pfm-spike) can be extended to estimate
+the innovation signal, i.e., the derivative of the activity-inducing signal, as shown in
+\cref{sec-unifying-both-perspectives}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Total Activation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Total Activation}
+### Total Activation
+
 Alternatively, deconvolution can be formulated as if the signal to be recovered
 directly fits the measurements and at the same time satisfies some suitable
 regularization, which leads to
-\begin{equation}
-\label{eq:analysis_model}
-    \hat{\mathbf{x}} = \arg \min_{\mathbf{x}} \frac{1}{2} \| \mathbf{y} - \mathbf{x} \|_2^2 + \Omega(\mathbf{x}).
-\end{equation}
+
+```{math}
+:label: eq-analysis-model
+\hat{\mathbf{x}} = \arg \min_{\mathbf{x}} \frac{1}{2} \| \mathbf{y} - \mathbf{x} \|_2^2 + \Omega(\mathbf{x}).
+```
+
 Under this analysis formulation, total variation (TV), i.e., the $\ell_1$-norm
 of the derivative $\Omega(\mathbf{x})=\lambda \|\mathbf{Dx}\|_1$, is a powerful
 regularizer since it favors recovery of piecewise-constant signals
-\citep{Chambolle2004algorithmtotalvariation}. Going beyond, the approach of
+[@Chambolle2004algorithmtotalvariation]. Going beyond, the approach of
 generalized TV introduces an additional differential operator $\mathbf{D_H}$ in
 the regularizer that can be tailored as the inverse operator of a linear system
 \citep{Karahanoglu2011SignalProcessingApproach}, that is,
@@ -322,28 +309,29 @@ $\Omega(\mathbf{x})=\lambda \|\mathbf{D D_H x}\|_1$. In the context of
 hemodynamic deconvolution, Total Activation is proposed for which the discrete
 operator $\mathbf{D_H}$ is derived from the inverse of the continuous-domain
 linearized Balloon-Windkessel model
-\citep{Buxton1998Dynamicsbloodflow,Friston2000NonlinearresponsesfMRI}. The
+[@Buxton1998Dynamicsbloodflow;@Friston2000NonlinearresponsesfMRI]. The
 interested reader is referred to
-\citep{Khalidov2011ActiveletsWaveletssparse,Karahanoglu2011SignalProcessingApproach,Karahanoglu2013TotalactivationfMRI}
+[@Khalidov2011ActiveletsWaveletssparse;@Karahanoglu2011SignalProcessingApproach;@Karahanoglu2013TotalactivationfMRI]
 for a detailed description of this derivation.
 
 Therefore, the solution of the Total Activation (TA) problem
-\begin{equation}
-\label{eq:TA}
-    \hat{\mathbf{x}} = \arg \min_{\mathbf{x}} \frac{1}{2} \| \mathbf{y} - \mathbf{x} \|_2^2 + \lambda \|\mathbf{D D_H x} \|_1
-\end{equation}
-will yield the activity-related signal $\mathbf{x}$ for which the
-activity-inducing signal $\mathbf{s}=\mathbf{D_H x}$ and the so-called
-innovation signal $\mathbf{u}=\mathbf{Ds}$, i.e., the derivate of the
-activity-inducing signal, will also be available, as they are required for the
-regularization. Modeling the activity-inducing signal based on the innovation
-signal is referred to as the \textit{block model}. Nevertheless, even if TA was
-originally developed as a block model, its formulation in \cref{eq:TA} can be
-made equivalent to the spike model as shown in
-\cref{sec:unifying_both_perspectives}.
 
-\subsection{Unifying Both Perspectives}
-\label{sec:unifying_both_perspectives}
+```{math}
+:label: eq-TA
+\hat{\mathbf{x}} = \arg \min_{\mathbf{x}} \frac{1}{2} \| \mathbf{y} - \mathbf{x} \|_2^2 + \lambda \|\mathbf{D D_H x} \|_1
+```
+
+will yield the activity-related signal $\mathbf{x}$ for which the activity-inducing signal
+$\mathbf{s}=\mathbf{D_H x}$ and the so-called innovation signal $\mathbf{u}=\mathbf{Ds}$, i.e., the
+derivate of the activity-inducing signal, will also be available, as they are required for the
+regularization. Modeling the activity-inducing signal based on the innovation signal is referred to
+as the *block model*. Nevertheless, even if TA was originally developed as a block model, its
+formulation in [Eq. %s](eq-TA) can be made equivalent to the spike model as shown in
+\cref{sec-unifying-both-perspectives}.
+
+(sec-unifying-both-perspectives)=
+### Unifying Both Perspectives
+
 PFM and TA are based on the synthesis- and analysis-based formulation of the
 deconvolution problem, respectively. They are also tailored for the spike and
 block model, respectively. In the first case, the recovered deconvolved signal
@@ -352,32 +340,31 @@ recovered signal is directly matched to the measurements but needs to satisfy
 its analysis in terms of deconvolution. This also corresponds to using the
 forward or backward model of the hemodynamic system, respectively. Hence, it is
 possible to make both approaches equivalent
-\citep{Elad2007Analysisversussynthesis}\footnote{Without dwelling into
-technicalities, for total variation, this equivalence is correct up to the
-constant, which is in the null space of the derivative operator.}.
+[@Elad2007Analysisversussynthesis][^total_variation].
 
 To start with, TA can be made equivalent to PFM by adapting it for the spike
 model; i.e., when removing the derivative operator $\mathbf{D}$ of the
-regularizer in \cref{eq:TA}, it can be readily verified that replacing in that
+regularizer in \cref{eq-TA}, it can be readily verified that replacing in that
 case $\mathbf{x}=\mathbf{Hs}$ leads to identical equations and thus both assume
 a spike model, since $\mathbf{H}$ and $\mathbf{D_H}$ will cancel out each other
-\citep{Karahanoglu2011SignalProcessingApproach}\footnote{Again, this holds up to
-elements of the null space.}.
+[@Karahanoglu2011SignalProcessingApproach][^null_space].
 
 Conversely, the PFM spike model can also accommodate the TA block model by
-modifying \cref{eq:pfm_spike} with the forward model $\mathbf{y} = \mathbf{H L
+modifying [Eq. %s](eq-pfm-spike) with the forward model $\mathbf{y} = \mathbf{H L
 u} + \mathbf{e}$. Here, the activity-inducing signal $\mathbf{s}$ is rewritten
 in terms of the innovation signal $\mathbf{u}$ as $\mathbf{s}=\mathbf{Lu}$ where
 the matrix $\mathbf{L}$ is the first-order integration operator
-\citep{Cherkaoui2019Sparsitybasedblind,Urunuela2020StabilityBasedSparse}. This
+[@Cherkaoui2019Sparsitybasedblind;@Urunuela2020StabilityBasedSparse]. This
 way, PFM can estimate the innovation signal $\mathbf{u}$ as follows:
-\begin{equation}
-    \label{eq:pfm_block}
-    \hat{\mathbf{u}} = \arg \min_{\mathbf{u}} \frac{1}{2} \| \mathbf{y} - \mathbf{HLu} \|_2^2 + \lambda \| \mathbf{u} \|_1,
-\end{equation}
+
+```{math}
+:label: eq-pfm-block
+\hat{\mathbf{u}} = \arg \min_{\mathbf{u}} \frac{1}{2} \| \mathbf{y} - \mathbf{HLu} \|_2^2 + \lambda \| \mathbf{u} \|_1,
+```
+
 and becomes equivalent to TA by replacing $\mathbf{u}=\mathbf{D D_H x}$, and
 thus adopting the block model. Based on the previous equations
-(\cref{eq:pfm_spike}), (\cref{eq:TA}) and (\cref{eq:pfm_block}), it is clear
+([Eq. %s](eq-pfm-spike)), ([Eq. %s](eq-TA)) and ([Eq. %s](eq-pfm-block)), it is clear
 that both PFM and TA can operate under the spike and block models, providing a
 convenient signal model according to the different assumptions of the underlying
 neuronal-related signal. This work evaluates the core of the two techniques;
@@ -411,12 +398,13 @@ models are used.
 \label{fig:flowchart}
 \end{figure}
 
-\subsection{Algorithms and Parameter Selection}
-\label{sec:regparam}
+(sec-regparam)=
+### Algorithms and Parameter Selection
+
 Despite their apparent resemblance, the practical implementations of the PFM and
 TA methods proposed different algorithms to solve the corresponding optimization
 problem and select an adequate regularization parameter $\lambda$
-\citep{Gaudes2013Paradigmfreemapping,Karahanoglu2013TotalactivationfMRI}. The
+[@Gaudes2013Paradigmfreemapping;@Karahanoglu2013TotalactivationfMRI]. The
 PFM implementation available in AFNI employs the least angle regression (LARS)
 \citep{Efron2004Leastangleregression}, whereas the TA implementation uses the
 fast iterative shrinkage-thresholding algorithm (FISTA)
@@ -438,10 +426,12 @@ that provides fast convergence for large-scale problems. In the case of FISTA
 though, the regularization parameter $\lambda$ must be selected prior to solving
 the problem, but can be updated in every iteration so that the residuals of the
 data fit converge to an estimated noise level of the data $\hat{\sigma}$:
-\begin{equation}
-    \lambda^{n+1} = \frac{N \hat{\sigma}}{\frac{1}{2} \| \mathbf{y} - \mathbf{x}^n \|_F^2} \lambda^n,
-\label{eq:std}
-\end{equation}
+
+```{math}
+:label: eq-std
+\lambda^{n+1} = \frac{N \hat{\sigma}}{\frac{1}{2} \| \mathbf{y} - \mathbf{x}^n \|_F^2} \lambda^n,
+```
+
 where $x^n$ is the $n^{th}$ iteration estimate, $\lambda^n$ and $\lambda^{n+1}$
 are the $n^{th}$ and $n+1^{th}$ iteration values for the regularization
 parameter $\lambda$, and $N$ is the number of points in the time-course. The
@@ -453,10 +443,10 @@ on the MAD estimate have also been applied in PFM formulations
 \citep{Gaudes2012Structuredsparsedeconvolution,Gaudes2011Paradigmfreemapping}.
 
 % Methods
-\section{Methods}
+## Methods
 \label{sec:synthesis_methods}
 
-\subsection{Simulated data}
+### Simulated data
 
 \begin{figure}[t!]
     \begin{center}
@@ -468,7 +458,7 @@ on the MAD estimate have also been applied in PFM formulations
 
 In order to compare the two methods while controlling for their correct
 performance, a simulation scenario was created, which can be found in the GitHub
-repository shared in \cref{sec:synthesis_github}. For the sake of illustration,
+repository shared in \cref{sec-synthesis-github}. For the sake of illustration,
 here the simulations correspond to a timecourse with a duration of 400 seconds
 (TR = 2 s) where the activity-inducing signal includes 5 events, which are
 convolved with the canonical HRF. Different noise sources (physiological,
@@ -480,9 +470,11 @@ represent high, medium and low contrast-to-noise ratios as shown in
 and sinusoidal signals to simulate a realistic noise model with thermal noise,
 cardiac and respiratory physiological fluctuations, respectively. The
 physiological signals were generated as
-\begin{equation}
-    \sum_{i=1}^{2} \frac{1}{2^{i-1}}\left(\sin \left(2 \pi f_{r, i} t+\phi_{\mathrm{r}, i}\right)+\sin \left(2 \pi f_{c, i} t+\phi_{c, i}\right)\right),
-\end{equation}
+
+```{math}
+\sum_{i=1}^{2} \frac{1}{2^{i-1}}\left(\sin \left(2 \pi f_{r, i} t+\phi_{\mathrm{r}, i}\right)+\sin \left(2 \pi f_{c, i} t+\phi_{c, i}\right)\right),
+```
+
 with up to second-order harmonics per cardiac (\(f_{c,i}\)) and respiratory
 (\(f_{r,i}\)) component that were randomly generated following normal
 distributions with variance 0.04 and mean \(if_r\) and \(if_c\), for \(i = [1,
@@ -500,7 +492,8 @@ Table 3 from \citep{Triantafyllou2005Comparisonphysiologicalnoise}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Experimental Data}
+
+### Experimental Data
 To compare the performance of the two approaches as well as illustrate their
 operation, two representative experimental datasets were employed.
 
@@ -581,7 +574,8 @@ despiking step exceeded 10\%.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Selection of the Hemodynamic Response Function}
+
+### Selection of the Hemodynamic Response Function
 
 In their original formulations, PFM and TA specify the discrete-time HRF in
 different ways. For PFM, the continuous-domain specification of the canonical
@@ -604,15 +598,16 @@ analysis operator (e.g., see \cref{fig:sim_and_hrf}C for the TR=2s case).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Selection of the Regularization Parameter}
+
+### Selection of the Regularization Parameter
 
 The simulated data was used to compare the performance of the two deconvolution
 algorithms with both BIC and MAD criteria to set the regularization parameter
-$\lambda$ (see \cref{sec:regparam}). Here, the evaluation also included
+$\lambda$ (see \cref{sec-regparam}). Here, the evaluation also included
 investigating if the algorithms behave differently in terms of the estimation of
 the activity-inducing signal $\mathbf{\hat{s}}$ using the spike model described
-in \cref{eq:pfm_spike} and the block model based on the innovation signal
-$\mathbf{\hat{u}}$ in \cref{eq:pfm_block}.
+in \cref{eq-pfm-spike} and the block model based on the innovation signal
+$\mathbf{\hat{u}}$ in \cref{eq-pfm-block}.
 
 For selection based on the BIC, LARS was initally performed with the PFM
 deconvolution model to obtain the solution for every possible $\lambda$ in the
@@ -628,15 +623,18 @@ standard deviation to the estimated noise level of the data $\hat{\sigma}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Analyses in Experimental fMRI Data}
+
+### Analyses in Experimental fMRI Data
 
 \textbf{Difference between approaches}: To assess the discrepancies between both
 approaches when applied on experimental fMRI data, the square root of the sum of
 squares of the differences (RSSD) between the activity-inducing signals
 estimated with PFM and TA were calculated on the three experimental datasets as
-\begin{equation}
-    \text{RSSD} = \sqrt{\frac{1}{N} \sum_{k=1}^N (\hat{s}_\text{PFM}[k] - \hat{s}_\text{TA}[k])^2},
-\end{equation}
+
+```{math}
+\text{RSSD} = \sqrt{\frac{1}{N} \sum_{k=1}^N (\hat{s}_\text{PFM}[k] - \hat{s}_\text{TA}[k])^2},
+```
+
 where $N$ is the number of timepoints of the acquisition. The RSSD of the
 innovation signals $\mathbf{\hat{u}}$ was computed equally.
 
@@ -669,13 +667,14 @@ signal in the seed and compare the results with the widely-used seed correlation
 approach.
 
 % Results
-\section{Results}
-\label{synthesis_results}
-\subsection{Performance Based on the Regularization Parameter}
-\label{sec:regpath}
+(synthesis_results)=
+## Results
+
+(sec:regpath)=
+### Performance Based on the Regularization Parameter
 
 \cref{fig:sim}A shows the regularization paths of PFM and TA side by side
-obtained for the spike model of \cref{eq:pfm_spike} for SNR=3 dB. The solutions
+obtained for the spike model of \cref{eq-pfm-spike} for SNR=3 dB. The solutions
 for all three SNR conditions are shown in \cref{fig:path_spike,fig:path_block}.
 Starting from the maximum $\lambda$ corresponding to a null estimate and for
 decreasing values of $\lambda$, LARS computes a new estimate at the value of
@@ -695,10 +694,10 @@ the simulated SNR condition, the spike model of both deconvolution algorithms
 produces identical regularization paths when the same HRF and regularization
 parameters are applied, and hence, identical estimates of the activity-inducing
 signal $\mathbf{\hat{{s}}}$ and neuronal-related hemodynamic signal
-$\mathbf{\hat{{x}}}$. 
+$\mathbf{\hat{{x}}}$.
 
 Likewise, \cref{fig:sim}C demonstrates that the regularization paths for the
-block model defined in \cref{eq:TA,eq:pfm_block} also yield virtually identical
+block model defined in \cref{eq-TA,eq-pfm-block} also yield virtually identical
 estimates of the innovation signals for both PFM and TA methods. Again, the
 BIC-based selection of $\lambda$ is identical for both PFM and TA. As
 illustrated in \cref{fig:sim}D, the estimates of the innovation signal
@@ -708,10 +707,8 @@ $\mathbf{u}$ also show no distinguishable differences between the algorithms.
 regularization paths and estimates of the innovation signal and
 activity-inducing signal regardless of the simulated SNR condition when applying
 the same HRF and regularization parameters with the block and spike models.
-% \todo{Last sentence could be skipped and moved to a general conclusion paper
-% in the discussion}
 
-As for selecting $\lambda$ with the MAD criterion defined in \cref{eq:std},
+As for selecting $\lambda$ with the MAD criterion defined in \cref{eq-std},
 \cref{fig:sim}E depicts the estimated activity-inducing and activity-related
 signals for the simulated low-SNR setting using the spike model, while
 \cref{fig:sim}F shows the estimated signals corresponding to the block model.
@@ -743,7 +740,7 @@ selection of $\lambda$ due to the quantization of the values returned by LARS.
 \label{fig:sim}
 \end{figure}
 
-\subsection{Performance on Experimental Data}
+### Performance on Experimental Data
 
 \cref{fig:rss} depicts the RSSD maps revealing differences between
 PFM and TA estimates for the spike (\cref{fig:rss}A and C) and block
@@ -859,8 +856,8 @@ and secondary visual cortices.
 \end{figure}
 
 % Discussion
-\section{Discussion and Conclusion}
-\label{sec:synthesis_discussion}
+(sec:synthesis_discussion)=
+## Discussion and Conclusion
 
 Hemodynamic deconvolution can be formulated using a synthesis- and
 analysis-based approach as proposed by PFM and TA, respectively. This work
@@ -875,24 +872,22 @@ spatiotemporal TA formulation \citep{Karahanoglu2013TotalactivationfMRI}. For
 instance, the use of PFM with the spike model in
 \cite{Tan2017DecodingfMRIevents} was seen not to be adequate due to the
 prolonged trials in the paradigm, which better fit the block model as described
-in \cref{eq:pfm_block}. However, given the equivalence of the temporal
+in \cref{eq-pfm-block}. However, given the equivalence of the temporal
 deconvolution, incorporating extra spatial or temporal regularization terms in
 the optimization problem should not modify this equivalence providing convex
 operators are employed. For a convex optimization problem, with a unique global
 solution, iterative shrinkage thresholding procedures alternating between the
 different regularization terms guarantee convergence, such as the generalized
 forward-backward splitting \citep{Raguet2013GeneralizedForwardBackward}
-algorithm originally employed for TA. 
+algorithm originally employed for TA.
 
-Our findings are also in line with the equivalence of analysis and synthesis
-methods in under-determined cases (\(N \leq V\)) demonstrated in
-\citep{Elad2007Analysisversussynthesis} and
-\citep{Ortelli2019Synthesisanalysistotal}. Still, this chapter has shown that a
-slight difference in the selection of the regularization parameter can lead to
-small differences in the estimated signals when employing the block model with
-the BIC selection of $\lambda$. However, since their regularization
-paths are equivalent, the algorithms can easily be forced to converge to the
-same selection of $\lambda$, thus resulting in identical estimated signals.
+Our findings are also in line with the equivalence of analysis and synthesis methods in
+under-determined cases ($N \leq V$) demonstrated in \citep{Elad2007Analysisversussynthesis} and
+\citep{Ortelli2019Synthesisanalysistotal}. Still, this chapter has shown that a slight difference
+in the selection of the regularization parameter can lead to small differences in the estimated
+signals when employing the block model with the BIC selection of $\lambda$. However, since their
+regularization paths are equivalent, the algorithms can easily be forced to converge to the same
+selection of $\lambda$, thus resulting in identical estimated signals.
 
 Nevertheless, the different formulations of analysis and synthesis deconvolution
 models bring along different kinds of flexibility. One notable advantage of PFM
@@ -953,7 +948,7 @@ principles of brain function during rest
 \citep{Karahanoglu2015Transientbrainactivity} and sleep
 \citep{Tarun2021NREMsleepstages} in healthy controls, next to alterations in
 22q11ds \citep{Zoeller2019LargeScaleBrain} and multiple sclerosis
-\citep{Bommarito2021Alteredanteriordefault}. 
+\citep{Bommarito2021Alteredanteriordefault}.
 
 Next to CAPs-inspired approaches, dynamic functional connectivity has recently
 been investigated with the use of co-fluctuations and edge-centric techniques
@@ -1034,11 +1029,27 @@ could be transferred for deconvolution by considering the biophysical model of
 the hemodynamic system and could potentially offer algorithms with reduced
 computational time and more flexibility.
 
-\section{Code and data availability}
-\label{sec:synthesis_github}
-The code and materials used in this work can be found in the following GitHub
-repository: \url{https://github.com/eurunuela/pfm_vs_ta}. The reader can explore
-different simulation parameters (e.g., SNR, varying HRF options and mismatch
-between algorithms, TR, number of events, onsets, and durations) in the provided
-Jupyter notebooks. Similarly, the experimental data can be found in
-\url{https://osf.io/f3ryg/}.
+(sec-synthesis-github)=
+## Code and data availability
+
+The code and materials used in this work can be found in the following GitHub repository:
+[https://github.com/eurunuela/pfm_vs_ta](https://github.com/eurunuela/pfm_vs_ta). The reader can
+explore different simulation parameters (e.g., SNR, varying HRF options and mismatch between
+algorithms, TR, number of events, onsets, and durations) in the provided Jupyter notebooks.
+Similarly, the experimental data can be found in [https://osf.io/f3ryg](https://osf.io/f3ryg).
+
+[^hemodynamic]: Note that the term deconvolution is also alternatively employed to refer to the
+estimation of the hemodynamic response shape assuming a known activity-inducing signal or neuronal
+activity
+[@Goutte2000Modelinghaemodynamicresponse;@Marrelec2002Bayesianestimationhemodynamic;@Ciuciu2003Unsupervisedrobustnonparametric;@Casanova2008impacttemporalregularization].
+
+[^3dPFM]: [https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dPFM.html](https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dPFM.html)
+
+[^3dMEPFM]: [https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dMEPFM.html](https://afni.nimh.nih.gov/pub/dist/doc/program_help/3dMEPFM.html)
+
+[^iCAPs]: [https://c4science.ch/source/iCAPs/](https://c4science.ch/source/iCAPs/)
+
+[^total_variation]: Without dwelling into technicalities, for total variation, this equivalence is
+correct up to the constant, which is in the null space of the derivative operator.
+
+[^null_space]: Again, this holds up to elements of the null space.
