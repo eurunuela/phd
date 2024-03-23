@@ -1,5 +1,5 @@
-\title{Chapter 5: Multi-Subject Paradigm Free Mapping}
-\label{cha:multi-subject}
+(cha-multi-subject)=
+# Chapter 5: Multi-Subject Paradigm Free Mapping
 
 This chapter is in preparation to be published and will be available as an
 interactive website at \url{https://github.com/eurunuela/msPFM\_paper}.

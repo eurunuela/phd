@@ -1,4 +1,4 @@
-\title{Abstract}
+# Abstract
 
 Functional magnetic resonance imaging data analysis is often directed to
 identify and disentangle the neural processes that occur in different brain

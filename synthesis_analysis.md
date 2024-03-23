@@ -1,5 +1,5 @@
-\title{Chapter 2: Synthesis-Based and Analysis-Based Hemodynamic Deconvolution for fMRI}
-\label{cha:synthesis_analysis}
+(cha-synthesis-analysis)=
+# Chapter 2: Synthesis-Based and Analysis-Based Hemodynamic Deconvolution for fMRI
 
 This chapter was published as \cite{Urunuela2023HemodynamicDeconvolutionDemystified}.
 

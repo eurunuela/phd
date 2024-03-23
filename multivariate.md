@@ -1,5 +1,5 @@
-\title{Chapter 4: Whole-Brain Multivariate Deconvolution for Multi-Echo Functional MRI}
-\label{cha:multivariate}
+(cha-multivariate)=
+# Chapter 4: Whole-Brain Multivariate Deconvolution for Multi-Echo Functional MRI
 
 This chapter was published as \cite{Urunuela2022Wholebrainmultivariate}.
 

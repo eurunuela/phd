@@ -1,5 +1,5 @@
-\title{Chapter 3: Stability-Based Sparse Paradigm Free Mapping}
-\label{cha:stability}
+(cha-stability)=
+# Chapter 3: Stability-Based Sparse Paradigm Free Mapping
 
 This chapter was published as \cite{Urunuela2020StabilityBasedSparse}.
 

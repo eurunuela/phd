@@ -1,5 +1,5 @@
-\title{Chapter 6: Sparse and Low-Rank Paradigm Free Mapping}
-\label{cha:low-rank}
+(cha-low-rank)=
+# Chapter 6: Sparse and Low-Rank Paradigm Free Mapping
 
 This chapter was published as \cite{Urunuela2021LowRankSparse}.
 
