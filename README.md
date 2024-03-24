@@ -1,3 +1,6 @@
+---
+license: "CC-BY-NC-SA-4.0"
+---
 # Unraveling Hidden Patterns of Brain Activity: A Journey Through Hemodynamic Deconvolution in Functional MRI
 
 :::{note} Welcome to my PhD dissertation!
