@@ -5723,13 +5723,18 @@ Papers that talk about deconvolution:
 }
 
  
-@article{Urunuela2022Wholebrainmultivariate,
-  author    = {Eneko Uru{\~{n}}uela and Javier Gonzalez-Castillo and Charles Zheng and Peter Bandettini and C{\'{e}}sar Caballero-Gaudes},
-  doi       = {10.1101/2022.09.30.510299},
-  month     = oct,
-  publisher = {Cold Spring Harbor Laboratory},
-  title     = {Whole-brain multivariate hemodynamic deconvolution for multi-echo {fMRI} with stability selection},
-  year      = {2022}
+@article{Urunuela2024Wholebrainmultivariate,
+  abstract = {Conventionally, analysis of functional MRI (fMRI) data relies on available information about the experimental paradigm to establish hypothesized models of brain activity. However, this information can be inaccurate, incomplete or unavailable in multiple scenarios such as resting-state, naturalistic paradigms or clinical conditions. In these cases, blind estimates of neuronal-related activity can be obtained with paradigm-free analysis methods such as hemodynamic deconvolution. Yet, current formulations of the hemodynamic deconvolution problem have three important limitations: (1) their efficacy strongly depends on the appropriate selection of regularization parameters, (2) being univariate, they do not take advantage of the information present across the brain, and (3) they do not provide any measure of statistical certainty associated with each detected event. Here we propose a novel approach that addresses all these limitations. Specifically, we introduce multivariate sparse paradigm free mapping (Mv-SPFM), a novel hemodynamic deconvolution algorithm that operates at the whole brain level and adds spatial information via a mixed-norm regularization term over all voxels. Additionally, Mv-SPFM employs a stability selection procedure that removes the need to select regularization parameters and also lets us obtain an estimate of the true probability of having a neuronal-related BOLD event at each voxel and time-point based on the area under the curve (AUC) of the stability paths. Besides, we present a formulation tailored for multi-echo fMRI acquisitions (MvME-SPFM), which allows us to better isolate fluctuations of BOLD origin on the basis of their linear dependence with the echo time (TE) and to assign physiologically interpretable units (i.e., changes in the apparent transverse relaxation ΔR2∗) to the resulting deconvolved events. Remarkably, we demonstrate that Mv-SPFM achieves comparable performance even when using a single-echo formulation. We demonstrate that this algorithm outperforms existing state-of-the-art deconvolution approaches, and shows higher spatial and temporal agreement with the activation maps and BOLD signals obtained with a standard model-based linear regression approach, even at the level of individual neuronal events. Furthermore, we show that by employing stability selection, the performance of the algorithm depends less on the selection of temporal and spatial regularization parameters λ and ρ. Consequently, the proposed algorithm provides more reliable estimates of neuronal-related activity, here in terms of ΔR2∗, for the study of the dynamics of brain activity when no information about the timings of the BOLD events is available. This algorithm will be made publicly available as part of the splora Python package.},
+  author   = {Eneko Uruñuela and Javier Gonzalez-Castillo and Charles Zheng and Peter Bandettini and César Caballero-Gaudes},
+  doi      = {https://doi.org/10.1016/j.media.2023.103010},
+  issn     = {1361-8415},
+  journal  = {Medical Image Analysis},
+  keywords = {Multi-echo fMRI, Hemodynamic deconvolution, Inverse problems, Stability selection},
+  pages    = {103010},
+  title    = {Whole-brain multivariate hemodynamic deconvolution for functional MRI with stability selection},
+  url      = {https://www.sciencedirect.com/science/article/pii/S1361841523002700},
+  volume   = {91},
+  year     = {2024}
 }
 
 @article{GonzalezCastillo2012Wholebraintime,

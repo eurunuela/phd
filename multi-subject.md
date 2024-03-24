@@ -214,7 +214,7 @@ series of each echo ($k=1,\ldots,K$) in a single vector:
 
 Assuming that data from multiple subjects ($s=1,\ldots,S$) are aligned to a
 common space, the multivariate multi-echo formulation introduced by
-\citep{Urunuela2022Wholebrainmultivariate} (see \cref{cha:multivariate}) is
+\citep{Urunuela2024Wholebrainmultivariate} (see \cref{cha:multivariate}) is
 adapted to simultaneously estimate shared and individualized voxelwise
 activity-inducing signal in multiple subjects. This method, referred to as
 multi-subject Paradigm Free Mapping (msPFM), therefore proposes to concatenate the
@@ -263,7 +263,7 @@ sparsity of the innovation signals across time and subjects, treating each
 estimate independently. On the other hand, the mixed-norm regularization term
 $\| \mathbf{D}_v \mathbf{U}_v \|_{2,1}$ promotes the co-activation of the
 innovation signals across all subjects simultaneously
-\citep{Gramfort2011FunctionalBrainImaging, Urunuela2022Wholebrainmultivariate}.
+\citep{Gramfort2011FunctionalBrainImaging, Urunuela2024Wholebrainmultivariate}.
 The parameter $\rho$ controls the balance between the two regularization terms,
 and $\mathbf{D}_v = \text{diag}(\lambda_{v,1}, \dots, \lambda_{v,S}) \in
 \mathbb{R}^{S \times S}$ is a diagonal matrix with subject-specific and
@@ -922,7 +922,7 @@ response to the presence of faces \citep{Vega2022Neuroscoutunifiedplatform}.
 While this study introduces a novel approach for analyzing naturalistic fMRI
 data, there is potential for further enhancements. Adopting a data-driven
 strategy like stability selection
-\citep{Meinshausen2010Stabilityselection, Urunuela2022Wholebrainmultivariate}
+\citep{Meinshausen2010Stabilityselection, Urunuela2024Wholebrainmultivariate}
 could eliminate the need for manually selecting the regularization parameter. By
 adopting such an approach, not only would the method's robustness be enhanced,
 but it would also enable estimation of the probability of neuronal-related

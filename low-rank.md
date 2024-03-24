@@ -61,7 +61,7 @@ where the neuronal-related component $\mathbf{H}\mathbf{S}$ is the convolution
 of voxel-specific neuronal-related signals $\mathbf{S}$ with the Toeplitz matrix
 $\mathbf{H} \in \mathbb{R}^{N \times N}$ with shifted HRFs in its columns (i.e.\
 similar to the formulation used for multivariate Paradigm Free Mapping
-@Urunuela2022Wholebrainmultivariate), the global fluctuations can be captured as the sum of $P$
+@Urunuela2024Wholebrainmultivariate), the global fluctuations can be captured as the sum of $P$
 spatially widespread (i.e.\ global) low-rank components
 $\mathbf{L}=\sum_{p=1}^{P}\mathbf{v}_p\mathbf{a}_p^T$ where $\mathbf{v}_p \in \mathbb{R}^{N \times
 1}$ and $\mathbf{a}_p \in \mathbb{R}^{V \times 1}$ denote their corresponding spatial and temporal
@@ -79,7 +79,7 @@ neuronal-related signals and the global components:
 where $\|\cdot\|_F$ denotes the Frobenious norm, the $\ell_{2,1}$+$\ell_{1}$-norm term enforces
 temporal sparsity and spatial structure on the estimate of the neuronal-related activity and $\rho$
 controls the tradeoff between both terms
-[@Gramfort2011FunctionalBrainImaging;@Urunuela2022Wholebrainmultivariate] and
+[@Gramfort2011FunctionalBrainImaging;@Urunuela2024Wholebrainmultivariate] and
 $\mathbf{D}_s=\text{diag}\left(\lambda_{S_1},\ldots,\lambda_{S_V} \right)$ is a diagonal matrix
 with voxel-specific non-negative regularization parameters that balances the sparsity of
 $\mathbf{S}$ and data fidelity for each voxel. In addition, the nuclear-norm $\|\cdot\|_*$
