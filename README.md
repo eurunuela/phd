@@ -1,5 +1,6 @@
 ---
 license: "CC-BY-NC-SA-4.0"
+thumbnail: figures/thumbnail.png
 ---
 # Unraveling Hidden Patterns of Brain Activity: A Journey Through Hemodynamic Deconvolution in Functional MRI
 
