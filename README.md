@@ -115,9 +115,9 @@ on X for updates.
 I would like to thank the [Signal Processing in Neuroimaging
 (SPiN)](https://bcbl.eu/en/research/research-groups/signal-processing-neuroimaging) lab at the
 [Basque Center on Cognition, Brain and Language (BCBL)](https://bcbl.eu/en) for their support and
-guidance throughout my PhD and I would like to especially thank my supervisor, [Dr. César
-Caballero-Gaudes](https://bcbl.eu/en/conocenos/equipo/cesar-caballero-gaudes), for his support and
-guidance.
+guidance throughout my PhD and I would like to especially thank my supervisors, [Dr. César
+Caballero-Gaudes](https://bcbl.eu/en/conocenos/equipo/cesar-caballero-gaudes) and Dr. Miguel Ángel Veganzones,
+for their support and guidance.
 
 ## Feedback
 
