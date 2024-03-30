@@ -379,7 +379,7 @@ and disease phenotype
 
 Functional connectivity patterns offer a valuable insight into the connectivity among brain regions over a timecourse of
 data. However, they only provide a single snapshot and do not capture how this connectivity evolves over time, thereby
-neglecting the dynamics of functional connectivity.
+neglecting the dynamics of functional connectivity
 [@Allen2012TrackingWholeBrain;@Di2020Intersubjectconsistentdynamic;@Hutchison2013Dynamicfunctionalconnectivity]. Dynamic
 functional connectivity (dFC) in resting-state is commonly investigated using sliding-window approaches
 [@Allen2012TrackingWholeBrain;@Hutchison2013Dynamicfunctionalconnectivity;@Preti2017dynamicfunctionalconnectome;@Lurie2020Questionscontroversiesstudy].
