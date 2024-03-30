@@ -12,7 +12,7 @@ excel in temporal resolution (10-100 ms), their spatial resolution is relatively
 [@Baillet2001Electromagneticbrainmapping;@Haemaelaeinen1993Magnetoencephalographytheoryinstrumentationapplications]. In
 contrast, invasive electrophysiological techniques, including patch clamps [@Neher1978extracellularpatchclamp],
 single-unit or multi-unit recordings [@Arieli1995Coherentspatiotemporalpatterns], and electrocorticography (ECOG)
-[@Miller2007Realtimefunctional;Nir2008Interhemisphericcorrelationsslow], offer high spatial resolution.
+[@Miller2007Realtimefunctional;@Nir2008Interhemisphericcorrelationsslow], offer high spatial resolution.
 
 Functional magnetic resonance imaging (fMRI) and Positron Emission Tomography (PET) provide insight into cerebral blood
 flow and oxygen metabolism, indirectly associated with neural activations. With spatial resolutions in the order of
