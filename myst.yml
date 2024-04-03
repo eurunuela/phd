@@ -11,10 +11,11 @@ project:
   github: https://github.com/eurunuela/phd
   bibliography: ["bibliography.bib"]
 site:
-  template: book-theme
+  template: /Users/eurunuela/GitHub/myst-theme/themes/book
   title: "Unraveling Hidden Patterns of Brain Activity: A Journey Through Hemodynamic Deconvolution in Functional MRI"
-  logo: ./figures/spin_logo.png
-  logo_dark: ./figures/spin_logo_dark.png
+  options:
+    logo: ./figures/spin_logo.png
+    logo_dark: ./figures/spin_logo_dark.png
   nav: []
   actions:
     - title: Packages
