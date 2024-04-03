@@ -512,7 +512,7 @@ estimates the innovations, albeit with relatively lower accuracy in capturing sh
 activations (we refer the reader to [@Urunuela2023HemodynamicDeconvolutionDemystified] for an
 in-depth comparison between models based on the activity-inducing signal --the spike model-- or the
 innovations --the block model). Furthermore, the influence of the $\ell_{2,1}$-norm (see
-[Eq. %s](eq-inverse-problem-multi-subject) is conspicuous in the estimation of group four, which
+[Eq. %s](#eq-inverse-problem-multi-subject) is conspicuous in the estimation of group four, which
 lacks simulated activity-signal. In this case, artifacts originating from the estimates of the
 remaining groups are noticeable, yet these artifacts are relatively minor compared to the estimated
 activity-inducing signals of the other groups. In addition, the estimated signals for these

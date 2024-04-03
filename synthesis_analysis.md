@@ -242,7 +242,7 @@ which provides fast convergence to a global solution. Imposing sparsity on the a
 signal implies that it is assumed to be well represented by a reduced subset of few non-zero
 coefficients at the fMRI timescale, which in turn trigger event-related BOLD responses.
 Hereinafter, this assumption is referred to as the *spike model*. However, even if PFM was
-developed as a spike model, its formulation in [Eq. %s](eq-pfm-spike) can be extended to estimate
+developed as a spike model, its formulation in [Eq. %s](#eq-pfm-spike) can be extended to estimate
 the innovation signal, i.e., the derivative of the activity-inducing signal, as shown in
 [](#sec-unifying-both-perspectives).
 
@@ -284,7 +284,7 @@ $\mathbf{s}=\mathbf{D_H x}$ and the so-called innovation signal $\mathbf{u}=\mat
 derivate of the activity-inducing signal, will also be available, as they are required for the
 regularization. Modeling the activity-inducing signal based on the innovation signal is referred to
 as the *block model*. Nevertheless, even if TA was originally developed as a block model, its
-formulation in [Eq. %s](eq-TA) can be made equivalent to the spike model as shown in
+formulation in [Eq. %s](#eq-TA) can be made equivalent to the spike model as shown in
 [](#sec-unifying-both-perspectives).
 
 (sec-unifying-both-perspectives)=
@@ -317,7 +317,7 @@ the innovation signal $\mathbf{u}$ as follows:
 ```
 
 and becomes equivalent to TA by replacing $\mathbf{u}=\mathbf{D D_H x}$, and thus adopting the
-block model. Based on the previous equations ([Eq. %s](eq-pfm-spike)), ([Eq. %s](eq-TA)) and ([Eq.
+block model. Based on the previous equations ([Eq. %s](#eq-pfm-spike)), ([Eq. %s](#eq-TA)) and ([Eq.
 %s](eq-pfm-block)), it is clear that both PFM and TA can operate under the spike and block models,
 providing a convenient signal model according to the different assumptions of the underlying
 neuronal-related signal. This work evaluates the core of the two techniques; i.e., the regularized
