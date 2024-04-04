@@ -123,7 +123,7 @@ performed with L1-norm regularized estimators as follows:
 
 An appropriate choice of the regularization parameter $\lambda$ in
 [Eq. %s](#eq-stability-inverse-problem-spike) or
-[Eq. %s](#eq-stability_inverse_problem_innovation) is crucial for appropriate hemodynamic deconvolution. Several techniques to select it have already been proposed, such as based on the
+[Eq. %s](#eq-stability-inverse-problem-innovation) is crucial for appropriate hemodynamic deconvolution. Several techniques to select it have already been proposed, such as based on the
 Bayesian Information Criterion [@Gaudes2013Paradigmfreemapping]. However,
 these techniques do not provide a solution that is robust regardless
 of the different characteristics the data may show (e.g., signal-to-noise ratio,
