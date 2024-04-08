@@ -180,7 +180,6 @@ function ChatbotWindow({ chatOpen, setChatOpen }) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ message })
-      // Add action property to request body
     });
     const answer = await response2.text();
     const answer_parsed = JSON.parse(answer).response;
@@ -266,4 +265,4 @@ var chatbot_default = ChatbotWindow;
 export {
   chatbot_default
 };
-//# sourceMappingURL=/build/_shared/chunk-ADRGOSQY.js.map
+//# sourceMappingURL=/build/_shared/chunk-BHODFH25.js.map

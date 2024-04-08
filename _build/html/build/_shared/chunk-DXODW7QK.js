@@ -1,6 +1,6 @@
 import {
   chatbot_default
-} from "/build/_shared/chunk-ADRGOSQY.js";
+} from "/build/_shared/chunk-BHODFH25.js";
 import {
   ArticlePage,
   ArticlePageCatchBoundary,
@@ -264,4 +264,4 @@ export {
   Page,
   CatchBoundary
 };
-//# sourceMappingURL=/build/_shared/chunk-JGCOFT7X.js.map
+//# sourceMappingURL=/build/_shared/chunk-DXODW7QK.js.map
