@@ -174,14 +174,14 @@ function ChatbotWindow({ chatOpen, setChatOpen }) {
   };
   const sendMessage = async () => {
     console.log("Message sent:", message);
-    const response2 = await fetch("/api/query", {
+    const apiResponse = await fetch("/api/query", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ message })
     });
-    const answer = await response2.text();
+    const answer = await apiResponse.text();
     const answer_parsed = JSON.parse(answer).response;
     setResponse(answer_parsed);
     console.log("Response:", answer_parsed);
@@ -265,4 +265,4 @@ var chatbot_default = ChatbotWindow;
 export {
   chatbot_default
 };
-//# sourceMappingURL=/build/_shared/chunk-BHODFH25.js.map
+//# sourceMappingURL=/build/_shared/chunk-B3ASLRW2.js.map

@@ -5043,7 +5043,7 @@ var LiveReload = false ? () => null : function LiveReload2({
                 function remixLiveReloadConnect(config) {
                   let protocol = location.protocol === "https:" ? "wss:" : "ws:";
                   let host = location.hostname;
-                  let port = ${port} || (window.__remixContext && window.__remixContext.dev && window.__remixContext.dev.port) || ${Number(63403)};
+                  let port = ${port} || (window.__remixContext && window.__remixContext.dev && window.__remixContext.dev.port) || ${Number(8002)};
                   let socketPath = protocol + "//" + host + ":" + port + "/socket";
                   let ws = new WebSocket(socketPath);
                   ws.onmessage = async (message) => {
@@ -5805,4 +5805,4 @@ react-router-dom/dist/index.js:
    * @license MIT
    *)
 */
-//# sourceMappingURL=/build/_shared/chunk-NBGBE2AG.js.map
+//# sourceMappingURL=/build/_shared/chunk-7JVCOJSL.js.map
