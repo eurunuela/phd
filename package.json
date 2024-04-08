@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build"
   },
   "dependencies": {
       "@myst-theme/book": "file:",
