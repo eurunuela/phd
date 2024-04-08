@@ -136,23 +136,7 @@ function ArticlePageAndNavigation({
       fileName: "app/routes/$.tsx",
       lineNumber: 89,
       columnNumber: 7
-    }, this),
-    /* @__PURE__ */ (0, import_jsx_dev_runtime.jsxDEV)(
-      "button",
-      {
-        onClick: () => setChatOpen(!chatOpen),
-        className: "fixed px-4 py-2 text-white bg-blue-500 rounded-full mb-16 mr-16 z-[100] bottom-4 right-4 max-[770px]:w-[80%] max-[770px]:px-4 max-[770px]:right-0 max-[770px]:left-0 max-[770px]:ml-auto max-[770px]:mr-auto",
-        children: "Ask the AI"
-      },
-      void 0,
-      false,
-      {
-        fileName: "app/routes/$.tsx",
-        lineNumber: 98,
-        columnNumber: 7
-      },
-      this
-    )
+    }, this)
   ] }, void 0, true, {
     fileName: "app/routes/$.tsx",
     lineNumber: 78,
@@ -264,4 +248,4 @@ export {
   Page,
   CatchBoundary
 };
-//# sourceMappingURL=/build/_shared/chunk-HLGEQPMT.js.map
+//# sourceMappingURL=/build/_shared/chunk-RAUKFEL4.js.map

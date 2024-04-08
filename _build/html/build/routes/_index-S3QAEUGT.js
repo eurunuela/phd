@@ -1,7 +1,7 @@
 import {
   KatexCSS,
   Page
-} from "/build/_shared/chunk-HLGEQPMT.js";
+} from "/build/_shared/chunk-RAUKFEL4.js";
 import "/build/_shared/chunk-B3ASLRW2.js";
 import {
   require_loaders
@@ -33,4 +33,4 @@ export {
   index_default as default,
   links
 };
-//# sourceMappingURL=/build/routes/_index-LY5562WD.js.map
+//# sourceMappingURL=/build/routes/_index-S3QAEUGT.js.map
