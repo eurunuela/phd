@@ -1,6 +1,6 @@
 import {
   RemixBrowser
-} from "/build/_shared/chunk-7JVCOJSL.js";
+} from "/build/_shared/chunk-NBGBE2AG.js";
 import {
   require_client
 } from "/build/_shared/chunk-EO2YHY6V.js";
@@ -39,4 +39,4 @@ if (window.requestIdleCallback) {
 } else {
   window.setTimeout(hydrate, 1);
 }
-//# sourceMappingURL=/build/entry.client-2NHXSRFY.js.map
+//# sourceMappingURL=/build/entry.client-DI3UMABR.js.map
