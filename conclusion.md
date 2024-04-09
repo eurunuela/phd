@@ -91,7 +91,7 @@ experimental task. When the regularization parameter $\lambda$ was manually sele
 performed comparably to the multivariate PFM. However, the selection of the regularization
 parameter for the nuclear norm penalty in the sparse and low-rank PFM posed a significant
 challenge, which will be addressed in the subsequent section. Given the success of the stability
-selection procedure in \cref{cha:stability} and \cref{cha:multivariate}, it is worth exploring its
+selection procedure in {ref}`Chapter 3 <cha-stability>` and {ref}`Chapter 4 <cha-multivariate>`, it is worth exploring its
 adaptation for this algorithm to avoid selecting all three regularization parameters.
 
 Overall, these series of studies demonstrate that PFM techniques can be used to
