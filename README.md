@@ -15,6 +15,7 @@ neuronal events.
 ## The thesis defense presentation
 
 <iframe src="https://player.vimeo.com/video/935334650?h=9bd47d083a" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+
 [Also available here](https://vimeo.com/935334650).
 
 ## The different chapters
