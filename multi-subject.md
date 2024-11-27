@@ -311,7 +311,7 @@ brightness.
 #### The Iteration Dataset
 
 48 participants were used in this study (all native English speakers; 27F, median age 24.5, range =
-(19,64)) from the National Institutes of Health (NIH). See
+(19, 64)) from the National Institutes of Health (NIH). See
 @SavaSegal2022Individualvariabilityneural for full procedural detail but in brief: subjects
 watched four movies (ranging from 7:27-12:27 min each) and subsequently completed a task battery
 designed to probe their interpretations and reactions to the movie, including the following: (i) a
@@ -324,7 +324,7 @@ counterbalanced at the group level. From the four movies, we selected the one wi
 event boundaries or scene cuts.
 
 MRI data were collected using a 3T Siemens Prisma scanner with a 64-channel head coil in 43
-subjects (all native English speakers; 27F, median age 24.5, range= (19,64)) while they watched a
+subjects (all native English speakers; 27F, median age 24.5, range= (19, 64)) while they watched a
 movie (called Iteration; [https://youtu.be/c53fGdK84rc](https://youtu.be/c53fGdK84rc) - 12:27
 min:sec) at the National Institutes of Health (NIH). All subjects provided informed written consent
 prior to the start of the study in accordance with experimental procedures approved by the
@@ -377,8 +377,8 @@ verbal indication from participants.
 
 MRI data were collected on a 3T Siemens Skyra scanner with a 20-channel head coil. Functional
 images were acquired using a T2*-weighted echo-planar imaging (EPI) pulse sequence (TR = 1500 ms,
-TE = 28 ms, flip angle = 64 deg, field of view = 192 $\times$ 192 mm\textsuperscript{2}, in-plane
-resolution = 3.0 $\times$ 3.0 mm\textsuperscript{2}, slice thickness = 4 mm, number of slices = 27
+TE = 28 ms, flip angle = 64 deg, field of view = 192 $\times$ 192 mm$\textsuperscript{2}$, in-plane
+resolution = 3.0 $\times$ 3.0 mm$\textsuperscript{2}$, slice thickness = 4 mm, number of slices = 27
 (whole-brain coverage) with ascending interleaved acquisition). Reported analyses come from a
 viewing run of 23 minutes. The raw data were available at
 [https://openneuro.org/datasets/ds001132/versions/1.0.0](https://openneuro.org/datasets/ds001132/versions/1.0.0).
@@ -388,7 +388,7 @@ with the ICA AROMA option [@Pruim2015ICAAROMArobust]. The preprocessing also inc
 smoothing with a gaussian kernel of fwhm=6mm, and voxelwise nuisance regression of the 6
 realignment parameters, their squares, their derivatives, and squared derivatives. Finally, we
 performed a detrending step using a 6th order polynomial to remove slow drifts in the data and
-normalized the data to percent signal change. Similar to The~Iteration~dataset, the preprocessed
+normalized the data to percent signal change. Similar to The ~Iteration~ dataset, the preprocessed
 data was then applied the shared response model [@Chen2015ReducedDimensionfMRI] in BrainIAK
 [@Kumar2020BrainIAKBrainImaging], and analyses were conducted using the average time-series of
 the 1000 ROIs from the Schaefer atlas [@Schaefer2017LocalGlobalParcellation].
