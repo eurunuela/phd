@@ -1,0 +1,10 @@
+{
+  "buildCommand": "node scripts/extract-thesis-context.js",
+  "outputDirectory": "_build/html",
+  "framework": null,
+  "functions": {
+    "api/**/*.js": {
+      "includeFiles": "_build/thesis-context.txt"
+    }
+  }
+}

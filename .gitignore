@@ -1,3 +1,7 @@
 .DS_Store
 figures/.DS_Store
 .vercel
+_build/thesis-context.txt
+node_modules/
+.env
+.env*.local

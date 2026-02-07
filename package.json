@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "build:vercel": "npx mystmd build --html && node scripts/extract-thesis-context.js"
   },
   "dependencies": {
       "@myst-theme/book": "file:",
@@ -20,8 +21,7 @@
       "react-icons": "^5.0.1",
       "buffer": "^6.0.3",
       "crypto": "^1.0.1",
-      "dotenv": "^16.4.5",
-      "llamaindex": "^0.2.2"
+      "dotenv": "^16.4.5"
     },
   "devDependencies": {
     "@remix-run/dev": "~1.17.0",
