@@ -18,7 +18,7 @@ const CHAPTER_ORDER = [
 ];
 
 // Path configuration
-const SITE_CONTENT_DIR = path.join(__dirname, '..', '_build', 'site', 'content');
+const SITE_CONTENT_DIR = path.join(__dirname, '..', '_build', 'html');
 const OUTPUT_FILE = path.join(__dirname, '..', '_build', 'thesis-context.txt');
 
 /**
